@@ -28,5 +28,28 @@ res.json(publicaciones);
 });
 
     
+router.put('/:id', upload.single('imagen'), async (req, res) => {
+  const { titulo, descripcion, autor, categoria, calificacion } = req.body;
+  const { id } = req.params;
+  const imagen = req.file ? req.file.buffer : null;
+
+  try {
+    const sql = imagen
+      ? 'UPDATE publicaciones SET titulo=?, descripcion=?, autor=?, categoria=?, calificacion=?, imagen=? WHERE id_publicacion=?'
+      : 'UPDATE publicaciones SET titulo=?, descripcion=?, autor=?, categoria=?, calificacion=? WHERE id_publicacion=?';
+
+    const params = imagen
+      ? [titulo, descripcion, autor, categoria, calificacion, imagen, id]
+      : [titulo, descripcion, autor, categoria, calificacion, id];
+
+    await db.execute(sql, params);
+
+    res.json({ message: 'Publicación actualizada correctamente' });
+  } catch (error) {
+    console.error('Error al actualizar publicación:', error);
+    res.status(500).json({ message: 'Error al actualizar publicación' });
+  }
+});
+
 
 module.exports = router;

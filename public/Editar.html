@@ -27,27 +27,50 @@
     }
 
     // Función para guardar la edición
-    function guardarEdicion() {
-      const descripcion = document.getElementById("descripcion").value;
-      const autor = document.getElementById("autor").value;
-      const tags = document.getElementById("tags").value;
-      const titulo = document.getElementById("titulo").value;
-      const porcentaje = document.getElementById("porcentaje").value;
+    async function guardarEdicion() {
+  const descripcion = document.getElementById("descripcion").value;
+  const autor = document.getElementById("autor").value;
+  const tags = document.getElementById("tags").value;
+  const titulo = document.getElementById("titulo").value;
+  const calificacion = parseInt(document.getElementById("porcentaje").value.replace('%', ''));
+  const id = document.getElementById("guardar").getAttribute("data-id");
 
+  const imagenInput = document.querySelector(".file-input");
+  const imagenArchivo = imagenInput.files[0];
+
+  const formData = new FormData();
+  formData.append("titulo", titulo);
+  formData.append("descripcion", descripcion);
+  formData.append("autor", autor);
+  formData.append("categoria", tags);
+  formData.append("calificacion", calificacion);
+  if (imagenArchivo) formData.append("imagen", imagenArchivo);
+
+  try {
+    const res = await fetch(`http://localhost:3000/publicaciones/${id}`, {
+      method: "PUT",
+      body: formData
+    });
+
+    const data = await res.json();
+
+    if (res.ok) {
       alert("Cambios guardados correctamente.");
-      // Aquí puedes hacer lo que necesites con los datos guardados, como enviarlos a un servidor, etc.
-
-      // Desactivar los campos de edición
       document.getElementById("descripcion").setAttribute("readonly", true);
       document.getElementById("autor").setAttribute("readonly", true);
       document.getElementById("tags").setAttribute("readonly", true);
       document.getElementById("titulo").setAttribute("readonly", true);
       document.getElementById("porcentaje").setAttribute("readonly", true);
       document.getElementById("guardar").style.display = "none";
-      document.getElementById("porcentaje").value = `${pub.calificacion}%`;
-
-
+    } else {
+      alert(data.message || "Error al guardar.");
     }
+  } catch (error) {
+    console.error("Error al guardar:", error);
+    alert("Error de red o servidor.");
+  }
+}
+
 
     // Función para cambiar la imagen
     function cambiarImagen(event) {
@@ -229,15 +252,17 @@
             document.getElementById("autor").value = pub.autor || "N/A";
             document.getElementById("tags").value = pub.categoria || "Sin categoría";
             document.getElementById("descripcion").value = pub.descripcion || "Sin descripción";
-document.getElementById("imagen").src = `data:image/jpeg;base64,${pub.imagen}`;
+            document.getElementById("imagen").src = `data:image/jpeg;base64,${pub.imagen}`;
+            document.getElementById("guardar").setAttribute("data-id", pub.id_publicacion);
+
 
 
             if (pub.imagen) {
-             
+
               const base64Image = `data:image/jpeg;base64,${pub.imagen}`;
               document.getElementById("imagen").src = base64Image;
             } else {
-              document.getElementById("imagen").src = "Imagenes/np.png"; 
+              document.getElementById("imagen").src = "Imagenes/np.png";
             }
 
 
