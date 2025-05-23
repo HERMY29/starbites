@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Star Bites - Editar</title>
+  <link rel="stylesheet" href="editar.css">
+  <script>
+    // Función para activar los campos de edición
+    function activarEdicion() {
+      const descripcion = document.getElementById("descripcion");
+      const autor = document.getElementById("autor");
+      const tags = document.getElementById("tags");
+      const titulo = document.getElementById("titulo");
+      const porcentaje = document.getElementById("porcentaje");
+      const imagen = document.getElementById("imagen");
+
+      descripcion.removeAttribute("readonly");
+      autor.removeAttribute("readonly");
+      tags.removeAttribute("readonly");
+      titulo.removeAttribute("readonly");
+      porcentaje.removeAttribute("readonly");
+      imagen.removeAttribute("disabled");
+
+      document.getElementById("guardar").style.display = "inline-block"; // Mostrar el botón de guardar
+    }
+
+    // Función para guardar la edición
+    function guardarEdicion() {
+      const descripcion = document.getElementById("descripcion").value;
+      const autor = document.getElementById("autor").value;
+      const tags = document.getElementById("tags").value;
+      const titulo = document.getElementById("titulo").value;
+      const porcentaje = document.getElementById("porcentaje").value;
+
+      alert("Cambios guardados correctamente.");
+      // Aquí puedes hacer lo que necesites con los datos guardados, como enviarlos a un servidor, etc.
+
+      // Desactivar los campos de edición
+      document.getElementById("descripcion").setAttribute("readonly", true);
+      document.getElementById("autor").setAttribute("readonly", true);
+      document.getElementById("tags").setAttribute("readonly", true);
+      document.getElementById("titulo").setAttribute("readonly", true);
+      document.getElementById("porcentaje").setAttribute("readonly", true);
+      document.getElementById("guardar").style.display = "none"; // Ocultar el botón de guardar
+    }
+
+    // Función para cambiar la imagen
+    function cambiarImagen(event) {
+      const reader = new FileReader();
+      reader.onload = function () {
+        document.getElementById('imagen').src = reader.result;
+      };
+      reader.readAsDataURL(event.target.files[0]);
+    }
+  </script>
+</head>
+<body>
+  <div class="container">
+    <!-- Barra superior -->
+    <header class="header">
+      <div class="logo">
+        <img src="Imagenes/logo.png" alt="Star Bites Logo">
+      </div>
+      <nav class="nav">
+        <ul>
+          <li><a href="#">Inicio</a></li>
+          <li><input type="text" placeholder="Búsqueda avanzada" class="search-box"></li>
+          <li><a href="#">Peliculas</a></li>
+          <li><a href="#">Series</a></li>
+          <li><a href="#">Libros</a></li>
+        </ul>
+      </nav>
+      <div class="user-icon">
+        <img src="Imagenes/perfil-de-usuario.png" alt="Perfil Usuario">
+      </div>
+    </header>
+
+<section style="margin: 40px; text-align: center; position: relative;">
+  <label for="busquedaTitulo" style="font-size: 24px; font-weight: bold; color: white; display: block; margin-bottom: 10px;">
+    BUSCAR TÍTULO
+  </label>
+  <div style="position: relative; display: inline-block; max-width: 400px; width: 100%;">
+    <input type="text" id="busquedaTitulo" placeholder="Escribe para buscar..." class="input-edit" style="width: 100%;" onkeyup="filtrarTitulos()">
+
+    <ul id="listaTitulos" style="
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      background-color: #444;
+      border-radius: 8px;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      display: none;
+      text-align: left;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+    ">
+      <li style="padding: 8px; color: white; cursor: pointer;">Breaking Bad</li>
+      <li style="padding: 8px; color: white; cursor: pointer;">Barbie</li>
+      <li style="padding: 8px; color: white; cursor: pointer;">BoJack Horseman</li>
+      <li style="padding: 8px; color: white; cursor: pointer;">Avatar</li>
+      <li style="padding: 8px; color: white; cursor: pointer;">Better Call Saul</li>
+      <li style="padding: 8px; color: white; cursor: pointer;">Stranger Things</li>
+    </ul>
+  </div>
+</section>
+
+
+    
+    <!-- Detalle y edición de la serie -->
+    <section class="detail-section">
+      <div class="image">
+        <img src="Imagenes/steven-universe.png" alt="Steven Universe" id="imagen">
+        <input type="file" onchange="cambiarImagen(event)" class="file-input" />
+      </div>
+      <div class="detail-info">
+        <h1>EDITAR - <input type="text" id="titulo" value="STEVEN UNIVERSE SEASON 1 - 4" readonly class="input-title"></h1>
+
+        <!-- Contenedor con bordes redondeados para toda la información -->
+        <div class="info-container">
+          <!-- Medidor de Star Bites -->
+          <div class="medidor">
+            <div class="estrella">
+              <img src="Imagenes/estrella.png" alt="Estrella">
+            </div>
+            <input type="number" id="porcentaje" value="97%" readonly class="input-porcentaje">
+          </div>
+
+          <!-- Autor y Tags -->
+          <div class="author-tags">
+            <span>Autor: <input type="text" id="autor" value="REBECA SUGAR" readonly class="input-edit"></span>
+
+             <span>Categoria: <input type="text" id="tags" value="Fantasy, Drama" readonly class="input-edit"></span>
+          </div>
+
+          <div class="description">
+            <label for="descripcion">Descripción:</label>
+            <textarea id="descripcion" readonly>Steven Universe es un héroe medio humano, medio gema que está aprendiendo a salvar el mundo con los poderes mágicos de su ombligo...</textarea>
+          </div>
+        </div>
+
+        <!-- Botón para editar -->
+        <button onclick="activarEdicion()" class="edit-btn">Editar</button>
+
+        <!-- Botón para guardar -->
+        <button id="guardar" style="display:none;" onclick="guardarEdicion()" class="save-btn">Guardar</button>
+      </div>
+    </section>
+
+    <!-- Comentarios -->
+    <section class="comments-section">
+      <h2>Comentarios</h2>
+      <div class="comment">
+        <img src="Imagenes/perfil-de-usuario.png" alt="Usuario" class="user-photo">
+        <div>
+          <p><strong>CARURA25</strong></p>
+          <p>TA BONITO <3</p>
+        </div>
+      </div>
+      <div class="comment">
+        <img src="Imagenes/perfil-de-usuario.png" alt="Usuario" class="user-photo">
+        <div>
+          <p><strong>JUANPEREZ</strong></p>
+          <p>¡Me encanta Steven Universe, tiene una trama increíble!</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+<script>
+  function filtrarTitulos() {
+    const input = document.getElementById("busquedaTitulo").value.toLowerCase();
+    const lista = document.getElementById("listaTitulos");
+    const items = lista.getElementsByTagName("li");
+
+    let hayCoincidencias = false;
+
+    for (let i = 0; i < items.length; i++) {
+      const texto = items[i].textContent.toLowerCase();
+      if (input && texto.startsWith(input)) {
+        items[i].style.display = "block";
+        hayCoincidencias = true;
+      } else {
+        items[i].style.display = "none";
+      }
+    }
+
+    lista.style.display = input && hayCoincidencias ? "block" : "none";
+  }
+</script>
+
+
+
+</body>
+</html>
