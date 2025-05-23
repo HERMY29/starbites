@@ -1,0 +1,291 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #2f2f2f;
+    color: white;
+}
+
+/* Barra superior */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #360745;
+    padding: 20px 40px;
+}
+
+.logo img {
+    width: 200px;
+}
+
+.nav ul {
+    display: flex;
+    list-style-type: none;
+    justify-content: center;
+    flex: 1;
+    margin: 0;
+}
+
+.nav li {
+    margin: 0 20px;
+}
+
+.nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.nav a:hover {
+    text-decoration: underline;
+}
+
+.search-box {
+    padding: 12px 25px;
+    border-radius: 25px;
+    border: none;
+    background-color: #9a72b3;
+    color: white;
+    font-size: 16px;
+    width: 550px;
+    margin-left: 20px;
+    display: block;
+}
+
+.search-box::placeholder {
+    color: white;
+}
+
+.user-icon img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+/* Detalle de la serie */
+.detail-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    margin-top: 30px;
+}
+
+.image {
+    display: flex;
+    justify-content: center;
+    width: 570px;
+    position: relative;
+}
+
+.image img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.file-input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.detail-info {
+    font-size: 60px; 
+    margin-bottom: 20px;
+    max-width: 600px;
+    margin-left: 20px;
+}
+
+.detail-info h1 {
+    font-size: 60px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: white;
+    text-align: left;
+}
+
+/* Campos de edición */
+.input-edit {
+    background-color: #555;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    width: 100%;
+    font-size: 16px;
+    border: 1px solid #444;
+}
+
+.input-porcentaje {
+    background-color: #555;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    width: 100px;
+    font-size: 16px;
+    border: 1px solid #444;
+}
+
+.input-title {
+    background-color: #555;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    width: 100%;
+    font-size: 40px;
+    border: 1px solid #444;
+}
+
+.info-container {
+    background-color: #333;
+    padding: 20px;
+    border-radius: 15px;
+    margin-top: 20px;
+}
+
+.medidor {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.medidor .estrella img {
+    width: 50px;
+    margin-right: 15px;
+}
+
+.medidor h2 {
+    font-size: 50px;
+    color: #f1c40f;
+    font-weight: bold;
+}
+
+.author-tags span {
+    display: inline-block;
+    font-size: 16px;
+    margin-bottom: 10px;
+    background-color: #00bcd4;
+    color: white;
+    padding: 8px 20px;
+    border-radius: 20px;
+    text-align: center;
+    transition: background-color 0.3s ease;
+    margin-right: 15px;
+}
+
+.author-tags span:hover {
+    background-color: #9a72b3;
+}
+
+.description {
+    font-size: 18px;
+    line-height: 1.6;
+    color: #fff;
+    margin-top: 10px;
+}
+
+/* Comentarios */
+.comments-section {
+    margin-top: 30px;
+}
+
+.comment {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.user-photo {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+.comment div p {
+    color: white;
+    font-size: 16px;
+}
+
+.comment div p strong {
+    font-weight: bold;
+}
+
+/* Botón de editar */
+.edit-btn {
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    background-color: #6c4f9b;
+    color: white;
+}
+
+.edit-btn:hover {
+    background-color: #9a72b3;
+}
+
+/* Botón de guardar */
+.save-btn {
+    background-color: #27ae60;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.save-btn:hover {
+    background-color: #2ecc71;
+}
+
+@media (max-width: 768px) {
+    .detail-section {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .image img {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .detail-info {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .detail-info h1 {
+        font-size: 30px;
+    }
+
+    .comments h3 {
+        font-size: 20px;
+    }
+}
+
+.input-descripcion {
+    background-color: #444;
+    color: white;
+    width: 100%;
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid #666;
+    font-size: 16px;
+    line-height: 1.6;
+    min-height: 150px;
+    resize: none;
+}
