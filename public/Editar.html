@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -42,7 +43,9 @@
       document.getElementById("tags").setAttribute("readonly", true);
       document.getElementById("titulo").setAttribute("readonly", true);
       document.getElementById("porcentaje").setAttribute("readonly", true);
-      document.getElementById("guardar").style.display = "none"; // Ocultar el botón de guardar
+      document.getElementById("guardar").style.display = "none";
+      document.getElementById("porcentaje").value = `${pub.calificacion}%`;
+
     }
 
     // Función para cambiar la imagen
@@ -55,6 +58,7 @@
     }
   </script>
 </head>
+
 <body>
   <div class="container">
     <!-- Barra superior -->
@@ -76,14 +80,16 @@
       </div>
     </header>
 
-<section style="margin: 40px; text-align: center; position: relative;">
-  <label for="busquedaTitulo" style="font-size: 24px; font-weight: bold; color: white; display: block; margin-bottom: 10px;">
-    BUSCAR TÍTULO
-  </label>
-  <div style="position: relative; display: inline-block; max-width: 400px; width: 100%;">
-    <input type="text" id="busquedaTitulo" placeholder="Escribe para buscar..." class="input-edit" style="width: 100%;" onkeyup="filtrarTitulos()">
+    <section style="margin: 40px; text-align: center; position: relative;">
+      <label for="busquedaTitulo"
+        style="font-size: 24px; font-weight: bold; color: white; display: block; margin-bottom: 10px;">
+        BUSCAR TÍTULO
+      </label>
+      <div style="position: relative; display: inline-block; max-width: 400px; width: 100%;">
+        <input type="text" id="busquedaTitulo" placeholder="Escribe para buscar..." class="input-edit"
+          style="width: 100%;" onkeyup="filtrarTitulos()">
 
-    <ul id="listaTitulos" style="
+        <ul id="listaTitulos" style="
   list-style: none;
   padding: 0;
   margin: 0;
@@ -98,14 +104,14 @@
   text-align: left;
   box-shadow: 0 4px 8px rgba(0,0,0,0.4);
 ">
- 
-</ul>
 
-  </div>
-</section>
+        </ul>
+
+      </div>
+    </section>
 
 
-    
+
     <!-- Detalle y edición de la serie -->
     <section class="detail-section">
       <div class="image">
@@ -113,7 +119,8 @@
         <input type="file" onchange="cambiarImagen(event)" class="file-input" />
       </div>
       <div class="detail-info">
-        <h1>EDITAR - <input type="text" id="titulo" value="STEVEN UNIVERSE SEASON 1 - 4" readonly class="input-title"></h1>
+        <h1>EDITAR - <input type="text" id="titulo" value="-" readonly class="input-title">
+        </h1>
 
         <!-- Contenedor con bordes redondeados para toda la información -->
         <div class="info-container">
@@ -122,19 +129,21 @@
             <div class="estrella">
               <img src="Imagenes/estrella.png" alt="Estrella">
             </div>
-            <input type="number" id="porcentaje" value="97%" readonly class="input-porcentaje">
+            <input type="text" id="porcentaje" value="%" readonly class="input-porcentaje">
+
           </div>
 
           <!-- Autor y Tags -->
           <div class="author-tags">
             <span>Autor: <input type="text" id="autor" value="REBECA SUGAR" readonly class="input-edit"></span>
 
-             <span>Categoria: <input type="text" id="tags" value="Fantasy, Drama" readonly class="input-edit"></span>
+            <span>Categoria: <input type="text" id="tags" value="Fantasy, Drama" readonly class="input-edit"></span>
           </div>
 
           <div class="description">
             <label for="descripcion">Descripción:</label>
-            <textarea id="descripcion" readonly>Steven Universe es un héroe medio humano, medio gema que está aprendiendo a salvar el mundo con los poderes mágicos de su ombligo...</textarea>
+            <textarea id="descripcion"
+              readonly>Steven Universe es un héroe medio humano, medio gema que está aprendiendo a salvar el mundo con los poderes mágicos de su ombligo...</textarea>
           </div>
         </div>
 
@@ -153,7 +162,7 @@
         <img src="Imagenes/perfil-de-usuario.png" alt="Usuario" class="user-photo">
         <div>
           <p><strong>CARURA25</strong></p>
-          <p>TA BONITO <3</p>
+          <p>TA BONITO <3< /p>
         </div>
       </div>
       <div class="comment">
@@ -166,55 +175,70 @@
     </section>
   </div>
 
-<script>
-  function filtrarTitulos() {
-    const input = document.getElementById("busquedaTitulo").value.toLowerCase();
-    const lista = document.getElementById("listaTitulos");
-    const items = lista.getElementsByTagName("li");
+  <script>
+    function filtrarTitulos() {
+      const input = document.getElementById("busquedaTitulo").value.toLowerCase();
+      const lista = document.getElementById("listaTitulos");
 
-    let hayCoincidencias = false;
+      const items = lista.getElementsByTagName("li");
 
-    for (let i = 0; i < items.length; i++) {
-      const texto = items[i].textContent.toLowerCase();
-      if (input && texto.startsWith(input)) {
-        items[i].style.display = "block";
-        hayCoincidencias = true;
-      } else {
-        items[i].style.display = "none";
+      let hayCoincidencias = false;
+
+      for (let i = 0; i < items.length; i++) {
+        const texto = items[i].textContent.toLowerCase();
+        if (input && texto.startsWith(input)) {
+          items[i].style.display = "block";
+          hayCoincidencias = true;
+        } else {
+          items[i].style.display = "none";
+        }
+      }
+
+      lista.style.display = input && hayCoincidencias ? "block" : "none";
+    }
+  </script>
+
+  <script>
+    // Obtener títulos desde backend
+    async function cargarTitulos() {
+      try {
+        const res = await fetch("http://localhost:3000/publicaciones/titulos");
+        const titulos = await res.json();
+
+        const lista = document.getElementById("listaTitulos");
+        lista.innerHTML = ""; // Limpiar
+
+        titulos.forEach(pub => {
+          const li = document.createElement("li");
+          li.textContent = pub.titulo;
+          li.style.padding = "8px";
+          li.style.color = "white";
+          li.style.cursor = "pointer";
+
+          li.onclick = () => {
+            document.getElementById("busquedaTitulo").value = ""; // limpia el input
+            lista.style.display = "none"; // oculta la lista
+
+            // muestra el título en el campo de edición
+            document.getElementById("titulo").value = pub.titulo;
+
+            // muestra la calificación como porcentaje
+            document.getElementById("porcentaje").value = `${pub.calificacion}%`;
+          };
+
+          lista.appendChild(li);
+        });
+
+      } catch (err) {
+        console.error("Error cargando títulos:", err);
       }
     }
 
-    lista.style.display = input && hayCoincidencias ? "block" : "none";
-  }
-</script>
-
-<script>
-  // Obtener títulos desde backend
-  async function cargarTitulos() {
-    try {
-      const res = await fetch("http://localhost:3000/publicaciones/titulos");
-      const titulos = await res.json();
-
-      const lista = document.getElementById("listaTitulos");
-      lista.innerHTML = ""; // Limpiar
-
-      titulos.forEach(pub => {
-        const li = document.createElement("li");
-        li.textContent = pub.titulo;
-        li.style.padding = "8px";
-        li.style.color = "white";
-        li.style.cursor = "pointer";
-        lista.appendChild(li);
-      });
-    } catch (err) {
-      console.error("Error cargando títulos:", err);
-    }
-  }
-
-  // Llama automáticamente al cargar la página
-  window.onload = cargarTitulos;
-</script>
+    // Llama automáticamente al cargar la página
+    window.onload = cargarTitulos;
+  </script>
 
 
 </body>
+
 </html>
