@@ -12,7 +12,7 @@ const db = require('../db');
 
 router.get('/titulos', async (req, res) => {
   try {
-    const [rows] = await db.execute('SELECT id_publicacion, titulo, calificacion FROM publicaciones');
+    const [rows] = await db.execute('SELECT id_publicacion, titulo, calificacion, autor, categoria, descripcion FROM publicaciones');
     res.json(rows);
   } catch (error) {
     console.error('Error al obtener títulos:', error);

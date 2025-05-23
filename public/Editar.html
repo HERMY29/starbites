@@ -46,6 +46,7 @@
       document.getElementById("guardar").style.display = "none";
       document.getElementById("porcentaje").value = `${pub.calificacion}%`;
 
+
     }
 
     // Función para cambiar la imagen
@@ -119,7 +120,7 @@
         <input type="file" onchange="cambiarImagen(event)" class="file-input" />
       </div>
       <div class="detail-info">
-        <h1>EDITAR - <input type="text" id="titulo" value="-" readonly class="input-title">
+        <h1>EDITAR - <input type="text" id="titulo" value=" - " readonly class="input-title">
         </h1>
 
         <!-- Contenedor con bordes redondeados para toda la información -->
@@ -135,16 +136,20 @@
 
           <!-- Autor y Tags -->
           <div class="author-tags">
-            <span>Autor: <input type="text" id="autor" value="REBECA SUGAR" readonly class="input-edit"></span>
+            <span>Autor: <input type="text" id="autor" value=" - " readonly class="input-edit"></span>
 
-            <span>Categoria: <input type="text" id="tags" value="Fantasy, Drama" readonly class="input-edit"></span>
+            <span>Categoria: <input type="text" id="tags" value=" - " readonly class="input-edit"></span>
           </div>
 
           <div class="description">
-            <label for="descripcion">Descripción:</label>
-            <textarea id="descripcion"
-              readonly>Steven Universe es un héroe medio humano, medio gema que está aprendiendo a salvar el mundo con los poderes mágicos de su ombligo...</textarea>
+            <label for="descripcion"
+              style="display: block; font-size: 20px; font-weight: bold; color: white; margin-bottom: 10px;">
+              DESCRIPCIÓN
+            </label>
+            <textarea id="descripcion" readonly class="input-descripcion"> - 
+  </textarea>
           </div>
+
         </div>
 
         <!-- Botón para editar -->
@@ -199,14 +204,14 @@
   </script>
 
   <script>
-    // Obtener títulos desde backend
+
     async function cargarTitulos() {
       try {
         const res = await fetch("http://localhost:3000/publicaciones/titulos");
         const titulos = await res.json();
 
         const lista = document.getElementById("listaTitulos");
-        lista.innerHTML = ""; // Limpiar
+        lista.innerHTML = ""; 
 
         titulos.forEach(pub => {
           const li = document.createElement("li");
@@ -216,15 +221,17 @@
           li.style.cursor = "pointer";
 
           li.onclick = () => {
-            document.getElementById("busquedaTitulo").value = ""; // limpia el input
-            lista.style.display = "none"; // oculta la lista
+            document.getElementById("busquedaTitulo").value = "";
+            lista.style.display = "none";
 
-            // muestra el título en el campo de edición
             document.getElementById("titulo").value = pub.titulo;
-
-            // muestra la calificación como porcentaje
-            document.getElementById("porcentaje").value = `${pub.calificacion}%`;
+            document.getElementById("porcentaje").value = pub.calificacion + "%";
+            document.getElementById("autor").value = pub.autor || "N/A";
+            document.getElementById("tags").value = pub.categoria || "Sin categoría";
+            document.getElementById("descripcion").value = pub.descripcion || "Sin descripción";
           };
+
+
 
           lista.appendChild(li);
         });
@@ -234,7 +241,6 @@
       }
     }
 
-    // Llama automáticamente al cargar la página
     window.onload = cargarTitulos;
   </script>
 

@@ -276,3 +276,16 @@ body {
         font-size: 20px;
     }
 }
+
+.input-descripcion {
+    background-color: #444;
+    color: white;
+    width: 100%;
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid #666;
+    font-size: 16px;
+    line-height: 1.6;
+    min-height: 150px;
+    resize: none;
+}
