@@ -116,7 +116,7 @@
     <!-- Detalle y edición de la serie -->
     <section class="detail-section">
       <div class="image">
-        <img src="Imagenes/steven-universe.png" alt="Steven Universe" id="imagen">
+        <img src="Imagenes/np.png" alt="Steven Universe" id="imagen">
         <input type="file" onchange="cambiarImagen(event)" class="file-input" />
       </div>
       <div class="detail-info">
@@ -211,7 +211,7 @@
         const titulos = await res.json();
 
         const lista = document.getElementById("listaTitulos");
-        lista.innerHTML = ""; 
+        lista.innerHTML = "";
 
         titulos.forEach(pub => {
           const li = document.createElement("li");
@@ -229,6 +229,19 @@
             document.getElementById("autor").value = pub.autor || "N/A";
             document.getElementById("tags").value = pub.categoria || "Sin categoría";
             document.getElementById("descripcion").value = pub.descripcion || "Sin descripción";
+document.getElementById("imagen").src = `data:image/jpeg;base64,${pub.imagen}`;
+
+
+            if (pub.imagen) {
+             
+              const base64Image = `data:image/jpeg;base64,${pub.imagen}`;
+              document.getElementById("imagen").src = base64Image;
+            } else {
+              document.getElementById("imagen").src = "Imagenes/np.png"; 
+            }
+
+
+
           };
 
 

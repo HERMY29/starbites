@@ -12,8 +12,15 @@ const db = require('../db');
 
 router.get('/titulos', async (req, res) => {
   try {
-    const [rows] = await db.execute('SELECT id_publicacion, titulo, calificacion, autor, categoria, descripcion FROM publicaciones');
-    res.json(rows);
+const [rows] = await db.execute('SELECT id_publicacion, titulo, calificacion, autor, categoria, descripcion, imagen FROM publicaciones');
+
+const publicaciones = rows.map(pub => ({
+  ...pub,
+  imagen: pub.imagen ? Buffer.from(pub.imagen).toString('base64') : null
+}));
+
+res.json(publicaciones);
+
   } catch (error) {
     console.error('Error al obtener títulos:', error);
     res.status(500).json({ message: 'Error al obtener los títulos' });
