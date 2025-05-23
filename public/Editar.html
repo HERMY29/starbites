@@ -23,53 +23,60 @@
       porcentaje.removeAttribute("readonly");
       imagen.removeAttribute("disabled");
 
-      document.getElementById("guardar").style.display = "inline-block"; // Mostrar el botón de guardar
+      document.getElementById("guardar").style.display = "inline-block";
+      document.getElementById("tipo").removeAttribute("disabled");
+      document.getElementById("estado").removeAttribute("disabled");
+
     }
 
     // Función para guardar la edición
     async function guardarEdicion() {
-  const descripcion = document.getElementById("descripcion").value;
-  const autor = document.getElementById("autor").value;
-  const tags = document.getElementById("tags").value;
-  const titulo = document.getElementById("titulo").value;
-  const calificacion = parseInt(document.getElementById("porcentaje").value.replace('%', ''));
-  const id = document.getElementById("guardar").getAttribute("data-id");
+      const descripcion = document.getElementById("descripcion").value;
+      const autor = document.getElementById("autor").value;
+      const tags = document.getElementById("tags").value;
+      const titulo = document.getElementById("titulo").value;
+      const calificacion = parseInt(document.getElementById("porcentaje").value.replace('%', ''));
+      const id = document.getElementById("guardar").getAttribute("data-id");
+      const tipo = document.getElementById("tipo").value;
+      const estado = document.getElementById("estado").value;
+      const imagenInput = document.querySelector(".file-input");
+      const imagenArchivo = imagenInput.files[0];
 
-  const imagenInput = document.querySelector(".file-input");
-  const imagenArchivo = imagenInput.files[0];
+      const formData = new FormData();
+      formData.append("titulo", titulo);
+      formData.append("descripcion", descripcion);
+      formData.append("autor", autor);
+      formData.append("categoria", tags);
+      formData.append("calificacion", calificacion);
+      formData.append("tipo", tipo);
+      formData.append("estado", estado);
 
-  const formData = new FormData();
-  formData.append("titulo", titulo);
-  formData.append("descripcion", descripcion);
-  formData.append("autor", autor);
-  formData.append("categoria", tags);
-  formData.append("calificacion", calificacion);
-  if (imagenArchivo) formData.append("imagen", imagenArchivo);
+      if (imagenArchivo) formData.append("imagen", imagenArchivo);
 
-  try {
-    const res = await fetch(`http://localhost:3000/publicaciones/${id}`, {
-      method: "PUT",
-      body: formData
-    });
+      try {
+        const res = await fetch(`http://localhost:3000/publicaciones/${id}`, {
+          method: "PUT",
+          body: formData
+        });
 
-    const data = await res.json();
+        const data = await res.json();
 
-    if (res.ok) {
-      alert("Cambios guardados correctamente.");
-      document.getElementById("descripcion").setAttribute("readonly", true);
-      document.getElementById("autor").setAttribute("readonly", true);
-      document.getElementById("tags").setAttribute("readonly", true);
-      document.getElementById("titulo").setAttribute("readonly", true);
-      document.getElementById("porcentaje").setAttribute("readonly", true);
-      document.getElementById("guardar").style.display = "none";
-    } else {
-      alert(data.message || "Error al guardar.");
+        if (res.ok) {
+          alert("Cambios guardados correctamente.");
+          document.getElementById("descripcion").setAttribute("readonly", true);
+          document.getElementById("autor").setAttribute("readonly", true);
+          document.getElementById("tags").setAttribute("readonly", true);
+          document.getElementById("titulo").setAttribute("readonly", true);
+          document.getElementById("porcentaje").setAttribute("readonly", true);
+          document.getElementById("guardar").style.display = "none";
+        } else {
+          alert(data.message || "Error al guardar.");
+        }
+      } catch (error) {
+        console.error("Error al guardar:", error);
+        alert("Error de red o servidor.");
+      }
     }
-  } catch (error) {
-    console.error("Error al guardar:", error);
-    alert("Error de red o servidor.");
-  }
-}
 
 
     // Función para cambiar la imagen
@@ -158,6 +165,23 @@
           </div>
 
           <!-- Autor y Tags -->
+
+  <div class="type-status" style="margin: 20px 0;">
+  <label for="tipo" style="font-weight: bold; color: white; font-size: 14px;">Tipo:</label>
+  <select id="tipo" class="input-edit" disabled>
+    <option value="pelicula">Película</option>
+    <option value="serie">Serie</option>
+    <option value="libro">Libro</option>
+  </select>
+
+  <label for="estado" style="margin-left: 20px; font-weight: bold; color: white; font-size: 14px;">Estado:</label>
+  <select id="estado" class="input-edit" disabled>
+    <option value="publicada">Publicada</option>
+    <option value="pendiente">Pendiente</option>
+  </select>
+</div>
+
+
           <div class="author-tags">
             <span>Autor: <input type="text" id="autor" value=" - " readonly class="input-edit"></span>
 
@@ -254,6 +278,9 @@
             document.getElementById("descripcion").value = pub.descripcion || "Sin descripción";
             document.getElementById("imagen").src = `data:image/jpeg;base64,${pub.imagen}`;
             document.getElementById("guardar").setAttribute("data-id", pub.id_publicacion);
+            document.getElementById("tipo").value = pub.tipo || "pelicula";
+            document.getElementById("estado").value = pub.estado || "publicada";
+
 
 
 
