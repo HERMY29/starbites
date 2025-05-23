@@ -1,0 +1,115 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Arial', sans-serif;
+    background-color: #2f2f2f;
+    color: white;
+  }
+  
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 20px;
+  }
+  
+  .form-container {
+    display: flex;
+    max-width: 1200px;
+    width: 100%;
+    background-color: #1f1f1f;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  
+  .form-left {
+    flex: 1;
+    padding: 30px;
+  }
+  
+  .form-right {
+    flex: 1;
+    background-color: #360745;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  h2 {
+    font-size: 32px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .register-form .input-group {
+    margin-bottom: 20px;
+  }
+  
+  .register-form label {
+    display: block;
+    font-size: 18px;
+    margin-bottom: 8px;
+  }
+  
+  .register-form input,
+  .register-form select {
+    width: 100%;
+    padding: 12px;
+    background-color: #484848;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 16px;
+  }
+  
+  .register-form .submit-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #6c4f9b;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+  }
+  
+  .register-form .submit-btn:hover {
+    background-color: #9a72b3;
+  }
+  
+  .logo {
+    max-width: 300px;
+    margin-bottom: 20px;
+  }
+  
+  @media (max-width: 768px) {
+    .form-container {
+      flex-direction: column;
+      height: auto;
+    }
+  
+    .form-left,
+    .form-right {
+      flex: 1;
+      padding: 20px;
+    }
+  
+    .logo {
+      max-width: 200px;
+    }
+  }
+  

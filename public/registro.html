@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crear Cuenta</title>
+  <link rel="stylesheet" href="registro.css">
+</head>
+<body>
+   <div class="container">
+    <section class="form-container">
+      <div class="form-left">
+        <h1>¡Regístrate ahora!</h1>
+        <form id="registerForm" class="register-form">
+          <div class="input-group">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" required>
+          </div>
+          <div class="input-group">
+            <label for="correo">Correo Electrónico:</label>
+            <input type="email" id="correo" required>
+          </div>
+          <div class="input-group">
+            <label for="contrasena">Contraseña:</label>
+            <input type="password" id="contrasena" required>
+          </div>
+          <div class="input-group">
+            <label for="confirmar_contrasena">Confirmar Contraseña:</label>
+            <input type="password" id="confirmar_contrasena" required>
+          </div>
+          <div class="input-group">
+            <label for="fecha_nacimiento">Fecha de Nacimiento:</label>
+            <input type="date" id="fecha_nacimiento" required>
+          </div>
+          <div class="input-group">
+            <label for="genero">Género:</label>
+            <select id="genero" required>
+              <option value="masculino">Masculino</option>
+              <option value="femenino">Femenino</option>
+              <option value="otro">Otro</option>
+            </select>
+          </div>
+          <div class="input-group">
+            <label for="telefono">Teléfono:</label>
+            <input type="tel" id="telefono" required>
+          </div>
+          <div class="input-group">
+            <label for="tipo_usuario">Tipo de Usuario:</label>
+            <select id="tipo_usuario" required>
+              <option value="usuario">Usuario</option>
+              <option value="administrador">Administrador</option>
+            </select>
+          </div>
+           
+          <button type="submit" class="submit-btn">Registrar</button>
+        </form>
+      </div>
+      <div class="form-right">
+        <img src="Imagenes/logo.png" alt="Star Bites Logo" class="logo">
+        <h2>¡Únete a la comunidad!</h2>
+      </div>
+    </section>
+  </div>
+
+   <script>
+    document.getElementById('registerForm').addEventListener('submit', async function (e) {
+      e.preventDefault();
+
+      const nombre = document.getElementById('nombre').value;
+      const correo = document.getElementById('correo').value;
+      const contrasena = document.getElementById('contrasena').value;
+      const confirmarContrasena = document.getElementById('confirmar_contrasena').value;
+      const fecha_nacimiento = document.getElementById('fecha_nacimiento').value;
+      const genero = document.getElementById('genero').value;
+      const telefono = document.getElementById('telefono').value;
+      const tipo_usuario = document.getElementById('tipo_usuario').value;
+
+      if (contrasena !== confirmarContrasena) {
+        alert('Las contraseñas no coinciden');
+        return;
+      }
+
+      const data = {
+        nombre,
+        correo,
+        contraseña: contrasena,
+        fecha_nacimiento,
+        genero,
+        telefono,
+        tipo_usuario
+      };
+
+      try {
+        const response = await fetch('/register', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(data)
+        });
+
+        const result = await response.json();
+
+        if (response.ok) {
+          alert('¡Usuario registrado exitosamente!');
+          window.location.href = 'inicio sesion.html';
+        } else {
+          alert(result.error || 'Ocurrió un error');
+        }
+      } catch (err) {
+        alert('Error en la conexión con el servidor');
+      }
+    });
+  </script>
+
+</body>
+</html>

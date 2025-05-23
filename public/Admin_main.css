@@ -1,0 +1,225 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Arial', sans-serif;
+    background-color: #2f2f2f;
+    color: white;
+  }
+  
+  /* Barra superior */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #360745;
+    padding: 20px 40px; /* Aumentamos el padding horizontal */
+  }
+  
+  .logo img {
+    width: 200px; /* Hacemos el logo más grande */
+  }
+
+  .user-and-star {
+    display: flex;
+    align-items: center;
+  }
+  .estrella img {
+    width: 50px; /* Aumentamos el tamaño de la estrella */
+    margin-right: 15px; /* Espacio entre la estrella y el ícono del usuario */
+  }
+
+  .nav ul {
+    display: flex;
+  list-style-type: none;
+  justify-content: center; /* Centra los enlaces */
+  flex: 1;
+  margin: 0;
+  }
+  
+  .nav li {
+    margin: 0 20px;  /* Aumentamos el espacio entre los elementos */
+  }
+  
+  .nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 30px;  /* Aumentamos el tamaño de la fuente */
+    font-weight: bold;  /* Hacemos el texto más visible */
+  }
+  
+  .nav a:hover {
+    text-decoration: underline;
+  }
+  
+  .search-box {
+    padding: 12px 25px;  /* Aumentamos el padding para que sea más grande */
+    border-radius: 25px;  /* Hacemos que sea más redonda */
+    border: none;
+    background-color: #9a72b3;
+    color: white;
+    font-size: 16px;
+    width: 550px;  /* Ajustamos el ancho de la barra de búsqueda */
+    margin-left: 20px;  /* Espacio a la izquierda */
+    display: block;
+  }
+  
+  
+  .search-box::placeholder {
+    color: white;
+ }
+  
+  
+ /* Estrella al lado del usuario */
+ .user-and-star {
+    display: flex;
+    align-items: center;
+  }
+  
+  .user-icon img {
+    width: 60px; /* Aumentamos el icono del usuario */
+    height: 60px; /* Aumentamos la altura del icono */
+    border-radius: 50%;
+    margin-left: 10px;
+  }
+
+ .estrella img {
+  width: 60px; /* Aumentamos el tamaño de la estrella */
+  margin-right: 10px; /* Espacio entre la estrella y el ícono de usuario */
+ }
+  /* Imagen destacada */
+  .featured-movie {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -30px;
+  }
+  
+  .movie-image {
+    width: 100%;
+    position: relative;
+  }
+  
+  .movie-image img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    object-position: 0% 30%;
+    border-radius: 10px;
+  }
+  
+  .movie-info {
+    position: absolute;
+    top: 20%;
+    left: 5%;
+    z-index: 1;
+    color: white;
+  }
+  
+  .movie-info h1 {
+    font-size: 90px;  /* Aumentamos el tamaño del texto */
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.7);
+  }
+  
+  .movie-info p {
+    font-size: 30px; /* Aumentamos el tamaño del texto */
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  }
+  
+  .movie-info .buttons {
+    display: flex;
+    gap: 25px;
+    justify-content: center;
+  }
+  
+  .movie-info button {
+    padding: 12px 20px;
+    background-color: #6c4f9b;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    font-size: 16px;
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Agregamos transición */
+  }
+  
+  .movie-info button:hover {
+    background-color: #00bcd4;  /* Cambia a color celeste cuando se pasa el mouse */
+    transform: scale(1.1);  /* Hace que el botón crezca un poco */
+  }
+  
+  /* Sección de administración con iconos */
+  .admin-actions {
+    display: flex;
+    justify-content: space-around;
+    margin: 30px;
+  }
+  
+  .admin-actions .action {
+    text-align: center;
+    transition: transform 0.3s ease;  /* Agregamos la transición */
+  }
+  
+  .icon-container {
+    width: 270px;
+    height: 270px;
+    background-color: #9552E4;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+    transition: transform 0.3s ease;  /* Agregamos transición para el tamaño */
+  }
+  
+  .icon-container:hover {
+    transform: scale(1.2);  /* Hace que el ícono crezca al pasar el mouse */
+  }
+  
+  .icon-container img {
+    width: 200px;
+    height: 200px;
+    transition: transform 0.3s ease; /* Agregamos transición para el ícono */
+  }
+  
+  .icon-container:hover img {
+    transform: scale(1.1);  /* Aumenta el tamaño de la imagen cuando se pasa el mouse */
+  }
+  .action p {
+    font-size: 18px;
+    color: white;
+  }
+  
+  /* Diseño responsive para pantallas pequeñas */
+  @media (max-width: 768px) {
+    .featured-movie {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .movie-info {
+      top: 10%;
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+    }
+  
+    .movie-info h1 {
+      font-size: 50px;
+    }
+  
+    .movie-info p {
+      font-size: 20px;
+    }
+  
+    .admin-actions {
+      flex-direction: column;
+    }
+  }
+  

@@ -1,0 +1,136 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #2f2f2f;
+  }
+  
+  .container {
+    display: flex;
+    width: 100%;
+    max-width: 1200px;
+    height: 80%;
+    background-color: #1f1f1f;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .left-panel {
+    flex: 1;
+    background-color: #360745;
+    color: white;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;  /* Centra verticalmente */
+    align-items: center;      /* Centra horizontalmente */
+    padding: 30px;
+  }
+  
+  .logo img {
+    width: 100%;
+    max-width: 250px;
+    position: absolute;
+    top: -10px;    /* Puedes ajustar el valor según lo necesites */
+    right: -10px;  /* Mueve el logo al lado derecho */
+  }
+  
+  
+  .content {
+    text-align: center;
+    margin-top: 80px; /* Alinea el texto un poco más abajo para que no quede encima del logo */
+    position: relative;
+    z-index: 1;
+  }
+  
+  .welcome-message {
+    font-size: 80px;
+    font-weight: bold;
+    margin-bottom: 15px;
+  }
+  
+  p {
+    font-size: 80px;
+    margin-bottom: 10px;
+    line-height: 1.6;
+  }
+  
+  .estrella img {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-80%);
+    width: 700px; /* Tamaño de la estrella */
+  height: 700px; /* Si deseas ajustar también la altura */
+  opacity: 0.9;
+  }
+  
+  .right-panel {
+    
+    flex: 1;
+    padding: 30px;
+    background-color: #353535;
+    color: white;
+  }
+  
+  h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .input-group {
+    margin-bottom: 15px;
+  }
+  
+  .input-group label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 5px;
+  }
+  
+  .input-group input {
+    width: 100%;
+    padding: 10px;
+    background-color: #484848;
+    color: white;
+    border: none;
+    border-radius: 5px;
+  }
+  
+  button {
+    width: 100%;
+    padding: 10px;
+    background-color: #6c4f9b;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  button:hover {
+    background-color: #9a72b3;
+  }
+  
+  p {
+    margin-top: 20px;
+    font-size: 14px;
+  }
+  
+  a {
+    color: #f1a7c3;
+    text-decoration: none;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+  
