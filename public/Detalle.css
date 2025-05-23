@@ -1,0 +1,290 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #2f2f2f;
+  color: white;
+}
+
+/* Barra superior */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #360745;
+  padding: 20px 40px;
+}
+.user-icon img {
+  width: 80px;  /* Ajusta el tamaño a 40px como las demás imágenes */
+  height: 80px; /* Mantén la altura igual para que sea un círculo */
+  border-radius: 50%; /* Asegura que la imagen siga siendo circular */
+  margin-left: 10px; /* Espacio entre la imagen y el borde */
+}
+
+
+.logo img {
+  width: 200px;
+}
+
+.nav ul {
+  display: flex;
+  list-style-type: none;
+  justify-content: center;
+  flex: 1;
+  margin: 0;
+}
+
+.nav li {
+  margin: 0 20px;
+}
+
+.nav a {
+  color: white;
+  text-decoration: none;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.nav a:hover {
+  text-decoration: underline;
+}
+
+.search-box {
+  padding: 12px 25px;
+  border-radius: 25px;
+  border: none;
+  background-color: #9a72b3;
+  color: white;
+  font-size: 16px;
+  width: 550px;
+  margin-left: 20px;
+  display: block;
+}
+
+.search-box::placeholder {
+  color: white;
+}
+
+/* Detalle de la serie */
+.detail-section {
+  display: flex;
+  justify-content: center; /* Centra el contenido horizontalmente */
+  align-items: center;     /* Centra el contenido verticalmente */
+  padding: 30px;
+  margin-top: 30px;
+}
+
+
+.image {
+  display: flex;
+  justify-content: center; /* Centra la imagen dentro de su contenedor */
+  width: 570px; /* Ajustamos el ancho si es necesario */
+}
+
+.image img {
+  width: 100%; /* Hace que la imagen ocupe todo el contenedor, ajustándola al tamaño deseado */
+  height: auto;
+  border-radius: 10px;
+}
+
+.detail-info {
+  font-size: 60px; 
+  margin-bottom: 20px;
+
+  max-width: 600px;
+  margin-left: 20px;
+}
+
+.detail-info h1 {
+  font-size: 60px;  /* Aumentamos el tamaño del título */
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: white;
+  text-align: left; /* Alinea el título a la izquierda */
+
+}
+
+
+/* Contenedor con bordes redondeados para la sección del porcentaje, autor y tags */
+.info-container {
+  background-color: #333;
+  padding: 20px;
+  border-radius: 15px;
+  margin-top: 20px;
+}
+
+.medidor {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.medidor .estrella img {
+  width: 50px;
+  margin-right: 15px;
+}
+
+.medidor h2 {
+  font-size: 50px;
+  color: #f1c40f;
+  font-weight: bold;
+}
+
+/* Redondear el tag y cambiar su estilo a un botón */
+.author-tags span {
+  display: inline-block;
+  font-size: 16px;
+  margin-bottom: 10px;
+  background-color: #00bcd4;  /* Color de fondo del botón (cambia el color si lo deseas) */
+  color: white;
+  padding: 8px 20px;
+  border-radius: 20px;  /* Bordes redondeados */
+  text-align: center;
+  transition: background-color 0.3s ease;
+  margin-right: 15px;  /* Espacio entre los botones */
+}
+
+.author-tags span:hover {
+  background-color: #9a72b3; /* Efecto hover para cambiar color */
+}
+
+/* Para que se vean como botones redondeados, puedes agregar varios colores */
+.author-tags span:nth-child(1) {
+  background-color: #00bcd4;  /* Color azul para el primer tag */
+}
+
+.author-tags span:nth-child(2) {
+  background-color: #9a72b3;  /* Color morado para el segundo tag */
+}
+
+.author-tags span:nth-child(3) {
+  background-color: #f39c12;  /* Color dorado para el tercer tag */
+}
+
+.description {
+  font-size: 18px;
+  line-height: 1.6;
+  color: #fff;
+  margin-top: 10px;
+}
+
+/* Contenedor de los comentarios */
+.comments {
+  margin-top: 30px;
+  background-color: #333; /* Fondo oscuro */
+  padding: 25px;
+  border-radius: 10px; /* Bordes redondeados */
+  max-width: 100%; /* Limitar el ancho máximo */
+  min-height: 150px; /* Aumentamos la altura mínima */
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-height: 400px; /* Ajustamos el alto máximo del contenedor */
+  overflow-y: auto; /* Añadimos la barra de desplazamiento */
+}
+
+/* Estilo de cada comentario */
+.comment {
+  background-color: #444; /* Fondo más claro */
+  padding: 15px;
+  border-radius: 8px; /* Bordes más redondeados */
+  margin-bottom: 10px; /* Espaciado entre comentarios */
+}
+
+/* Estilo del nombre del usuario */
+.comment p strong {
+  color: #f1c40f; /* Nombre del usuario dorado */
+  font-weight: bold;
+}
+
+.comment p {
+  color: #fff; /* Texto blanco */
+  font-size: 14px;
+}
+
+/* Estilo para el contenedor del usuario */
+.user-info {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+/* Estilo para la imagen del usuario */
+.user-image {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+/* Contenedor para el input de comentario y el botón */
+.comment-input-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Input para escribir el comentario */
+.comment-input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #444;
+  background-color: #555;
+  color: white;
+  font-size: 16px;
+  resize: none;
+  min-height: 50px;
+}
+
+/* Botón de enviar */
+.send-button {
+  background-color: #6c4f9b;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.send-button:hover {
+  background-color: #9a72b3;
+}
+
+/* Diseño responsive */
+@media (max-width: 768px) {
+  .detail-section {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .image img {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .detail-info {
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  .detail-info h1 {
+    font-size: 30px;
+  }
+
+  .rating h2 {
+    font-size: 28px;
+  }
+
+  .comments h3 {
+    font-size: 20px;
+  }
+}
+ 

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Star Bites - Detalle</title>
+  <link rel="stylesheet" href="Detalle.css">
+
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const id = params.get("id");
+  console.log("ID de la publicación:", id);
+
+</script>
+
+
+</head>
+<body>
+  <div class="container">
+    <!-- Barra superior -->
+    <header class="header">
+      <div class="logo">
+        <img src="Imagenes/logo.png" alt="Star Bites Logo">
+      </div>
+      <nav class="nav">
+        <ul>
+          <li><a href="#">Inicio</a></li>
+                    <li><input type="text" placeholder="Búsqueda avanzada" class="search-box"></li>
+
+          <li><a href="#">Peliculas</a></li>
+          <li><a href="#">Series</a></li>
+          <li><a href="#">Libros</a></li>
+        </ul>
+      </nav>
+      <div class="user-icon">
+        <img src="Imagenes/perfil-de-usuario.png" alt="Perfil Usuario">
+      </div>
+    </header>
+
+    <!-- Detalle de la serie -->
+    <section class="detail-section">
+      <div class="image">
+        <img src="Imagenes/steven-universe.png" alt="Steven Universe">
+      </div>
+      <div class="detail-info">
+        <h1>STEVEN UNIVERSE SEASON 1 - 4</h1>
+        
+        <!-- Contenedor con bordes redondeados para toda la información -->
+        <div class="info-container">
+          <!-- Medidor de Star Bites -->
+          <div class="medidor">
+            <div class="estrella">
+              <img src="Imagenes/estrella.png" alt="Estrella">
+            </div>
+            <h2>97%</h2>
+          </div>
+          
+          <!-- Autor y Tags -->
+          <div class="author-tags">
+            <span>Autor: REBECA SUGAR</span>
+            <span>Tags: <strong>Fantasy, Drama</strong></span>
+          </div>
+          
+          <p class="description">
+            Steven Universe es un héroe medio humano, medio gema que está aprendiendo a salvar el mundo con los poderes mágicos de su ombligo. Steven no puede ser tan poderoso como las Gemas de Cristal, o tan listo, pero eso no le impide unirse a Garnet, Amatista y Perla en sus aventuras mágicas.
+          </p>
+        </div>
+
+        <div class="comments">
+          <h3>COMENTARIOS</h3>
+          <div class="comment">
+            <div class="user-info">
+              <img src="Imagenes/perfil-de-usuario.png" alt="Usuario" class="user-image">
+              <p><strong>CARURA25</strong></p>
+            </div>
+            <p>TA BONITO <3</p>
+          </div>
+          <!-- Comentario 2 -->
+          <div class="comment">
+            <div class="user-info">
+              <img src="Imagenes/perfil-de-usuario.png" alt="Usuario" class="user-image">
+              <p><strong>JUANPEREZ</strong></p>
+            </div>
+            <p>Me encanta Steven Universe, ¡tiene una trama increíble!</p>
+          </div>
+          <!-- Comentario 3 -->
+          <div class="comment">
+            <div class="user-info">
+              <img src="Imagenes/perfil-de-usuario.png" alt="Usuario" class="user-image">
+              <p><strong>MARIA01</strong></p>
+            </div>
+            <p>Los personajes son geniales, sobre todo Garnet y Amatista.</p>
+          </div>
+          <!-- Comentario 4 -->
+          <div class="comment">
+            <div class="user-info">
+              <img src="Imagenes/perfil-de-usuario.png" alt="Usuario" class="user-image">
+              <p><strong>LUIS_G</strong></p>
+            </div>
+            <p>Una de mis series favoritas, ¡siempre la recomendaré!</p>
+          </div>
+        </div>
+        
+          
+          <!-- Sección de enviar comentario -->
+          <div class="comment-input-container">
+            <textarea class="comment-input" placeholder="Escribe tu comentario..."></textarea>
+            <button class="send-button">Enviar</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</body>
+</html>
