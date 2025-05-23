@@ -47,37 +47,38 @@
             </div>
 
             <!-- Caja de descripción y detalles -->
-            <<!-- Caja de descripción y detalles -->
-              <div class="details">
 
-                <label for="tipo">Tipo de Publicación</label>
-                <select id="tipo" name="tipo" required>
-                  <option value="pelicula">Película</option>
-                  <option value="serie">Serie</option>
-                  <option value="libro">Libro</option>
-                </select>
+            <div class="details">
 
-                <label for="title">Título</label>
-                <input type="text" id="title" name="title" placeholder="Escribe el título de la publicación..."
-                  required>
+              <label for="tipo">Tipo de Publicación</label>
+              <select id="tipo" name="tipo" required>
+                <option value="pelicula">Película</option>
+                <option value="serie">Serie</option>
+                <option value="libro">Libro</option>
+              </select>
 
-                <label for="autor">Autor</label>
-                <input type="text" id="autor" name="autor" placeholder="Escribe el nombre del autor..." required>
+              <label for="title">Título</label>
+              <input type="text" id="title" name="title" placeholder="Escribe el título de la publicación..." required>
 
-                <label for="calificacion">Calificación (0-10)</label>
-                <input type="number" id="calificacion" name="calificacion" min="0" max="10" step="1" required>
+              <label for="autor">Autor</label>
+            <input type="text" id="autor" name="autor" placeholder="Escribe el nombre del autor..." required>
 
-                <label for="description">Descripción</label>
-                <textarea id="description" name="description" placeholder="Escribe la descripción de la publicación..."
-                  required></textarea>
 
-                <label for="categories">Categorías</label>
-                <input type="text" id="categories" name="categories" placeholder="Agrega categorías..." required>
+              <label for="calificacion">Calificación (0-100)</label>
+              <input type="number" id="calificacion" name="calificacion" min="1" max="100" step="1" required>
 
-                <label for="tags">Tags</label>
-                <input type="text" id="tags" name="tags" placeholder="Agrega tags...">
 
-              </div>
+              <label for="description">Descripción</label>
+              <textarea id="description" name="description" placeholder="Escribe la descripción de la publicación..."
+                required></textarea>
+
+              <label for="categories">Categorías</label>
+              <input type="text" id="categories" name="categories" placeholder="Agrega categorías..." required>
+
+              <label for="tags">Tags</label>
+              <input type="text" id="tags" name="tags" placeholder="Agrega tags...">
+
+            </div>
 
           </div>
 
@@ -103,11 +104,15 @@
         e.preventDefault();
 
         const formData = new FormData();
+        formData.append("tipo", document.getElementById("tipo").value);
         formData.append("titulo", document.getElementById("title").value);
         formData.append("descripcion", document.getElementById("description").value);
         formData.append("categoria", document.getElementById("categories").value);
         formData.append("tags", document.getElementById("tags").value);
         formData.append("imagen", document.getElementById("image").files[0]);
+        formData.append("calificacion", document.getElementById("calificacion").value);
+formData.append("autor", document.getElementById("autor").value);
+
 
         try {
           const res = await fetch("http://localhost:3000/publicaciones", {
