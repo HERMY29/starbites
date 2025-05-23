@@ -39,3 +39,5 @@ app.listen(PORT, () => {
 const publicacionesRoutes = require('./routes/publicaciones_router');
 app.use('/publicaciones', publicacionesRoutes);
 
+const comentariosRouter = require('./routes/comentarios_router');
+app.use('/comentarios', comentariosRouter);

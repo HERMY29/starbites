@@ -91,46 +91,17 @@
           </p>
         </div>
 
-        <div class="comments">
-          <h3>COMENTARIOS</h3>
-          <div class="comment">
-            <div class="user-info">
-              <img src="Imagenes/perfil-de-usuario.png" alt="Usuario" class="user-image">
-              <p><strong>CARURA25</strong></p>
-            </div>
-            <p>TA BONITO <3< /p>
-          </div>
-          <!-- Comentario 2 -->
-          <div class="comment">
-            <div class="user-info">
-              <img src="Imagenes/perfil-de-usuario.png" alt="Usuario" class="user-image">
-              <p><strong>JUANPEREZ</strong></p>
-            </div>
-            <p>Me encanta Steven Universe, ¡tiene una trama increíble!</p>
-          </div>
-          <!-- Comentario 3 -->
-          <div class="comment">
-            <div class="user-info">
-              <img src="Imagenes/perfil-de-usuario.png" alt="Usuario" class="user-image">
-              <p><strong>MARIA01</strong></p>
-            </div>
-            <p>Los personajes son geniales, sobre todo Garnet y Amatista.</p>
-          </div>
-          <!-- Comentario 4 -->
-          <div class="comment">
-            <div class="user-info">
-              <img src="Imagenes/perfil-de-usuario.png" alt="Usuario" class="user-image">
-              <p><strong>LUIS_G</strong></p>
-            </div>
-            <p>Una de mis series favoritas, ¡siempre la recomendaré!</p>
-          </div>
-        </div>
+<div class="comments" id="comentarios-container">
+  <h3>COMENTARIOS</h3>
+</div>
+
 
 
         <!-- Sección de enviar comentario -->
         <div class="comment-input-container">
-          <textarea class="comment-input" placeholder="Escribe tu comentario..."></textarea>
-          <button class="send-button">Enviar</button>
+<textarea class="comment-input" id="comentarioTexto" placeholder="Escribe tu comentario..."></textarea>
+<button class="send-button" onclick="enviarComentario()">Enviar</button>
+
         </div>
       </div>
   </div>
@@ -250,6 +221,8 @@
     window.onload = () => {
       cargarTodasLasPublicaciones();
       cargarDetalle();
+      cargarComentarios();
+
 
       document.addEventListener("click", function (e) {
         const input = document.getElementById("busquedaGlobal");
@@ -261,6 +234,62 @@
       });
     };
   </script>
+
+<script>
+async function cargarComentarios() {
+  const id = new URLSearchParams(window.location.search).get("id");
+  const res = await fetch(`http://localhost:3000/comentarios/${id}`);
+  const comentarios = await res.json();
+  const contenedor = document.getElementById("comentarios-container");
+
+  // Limpia todo menos el título "COMENTARIOS"
+  contenedor.innerHTML = "<h3>COMENTARIOS</h3>";
+
+comentarios.forEach(com => {
+  const div = document.createElement("div");
+  div.classList.add("comment");
+  div.innerHTML = `
+    <div class="user-info">
+      <img src="Imagenes/perfil-de-usuario.png" alt="Usuario" class="user-image">
+      <p><strong>COMENTARIO</strong></p>
+    </div>
+    <p>${com.contenido}</p>
+  `;
+  contenedor.appendChild(div);
+});
+
+}
+
+async function enviarComentario() {
+  const id = new URLSearchParams(window.location.search).get("id");
+  const texto = document.getElementById("comentarioTexto").value.trim();
+
+  if (!texto) {
+    return alert("Escribe algo primero.");
+  }
+
+  try {
+    const res = await fetch(`http://localhost:3000/comentarios/${id}`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ contenido: texto }) // 👈 solo enviamos contenido
+    });
+
+    const data = await res.json();
+
+    if (res.ok) {
+      document.getElementById("comentarioTexto").value = "";
+      await cargarComentarios(); // recarga los comentarios
+    } else {
+      alert(data.message || "Error al guardar comentario");
+    }
+  } catch (error) {
+    console.error("Error al guardar comentario:", error);
+    alert("Error al conectar con el servidor.");
+  }
+}
+
+</script>
 
 
 
