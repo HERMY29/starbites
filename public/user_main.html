@@ -40,6 +40,12 @@
       </div>
     </section>
 
+
+<div id="peliculas-container" class="carousel"></div>
+<div id="series-container" class="carousel"></div>
+<div id="libros-container" class="carousel"></div>
+
+
     <!-- Carrusel de Películas -->
     <section class="movie-categories">
       <h2>Películas</h2>
@@ -660,5 +666,50 @@
       </div>
     </section>
   </div>
+
+
+
+<script>
+  async function cargarPublicaciones(tipo, contenedorId) {
+    try {
+      const res = await fetch(`http://localhost:3000/publicaciones/tipo/${tipo}`);
+      const publicaciones = await res.json();
+      const contenedor = document.getElementById(contenedorId);
+      contenedor.innerHTML = ''; // limpiar
+
+      publicaciones.forEach(pub => {
+        const div = document.createElement("div");
+div.classList.add("carousel-item");
+
+div.innerHTML = `
+  <div class="carousel-item-inner">
+    <img src="${pub.imagen ? `data:image/jpeg;base64,${pub.imagen}` : 'Imagenes/np.png'}" alt="${pub.titulo}">
+    <div class="carousel-item-title">${pub.titulo}</div>
+    <div class="carousel-item-info">
+      <p>${pub.descripcion || 'Sin descripción disponible.'}</p>
+      <div class="rating">
+        <img src="Imagenes/estrella.png" alt="star"> <span>${pub.calificacion || 0}%</span>
+      </div>
+    </div>
+  </div>
+`;
+
+contenedor.appendChild(div);
+
+      });
+    } catch (error) {
+      console.error("Error al cargar publicaciones:", error);
+    }
+  }
+
+  window.onload = () => {
+    cargarPublicaciones("pelicula", "peliculas-container");
+    cargarPublicaciones("serie", "series-container");
+    cargarPublicaciones("libro", "libros-container");
+  };
+</script>
+
+
+
 </body>
 </html>

@@ -53,5 +53,27 @@ const params = imagen
   }
 });
 
+router.get('/tipo/:tipo', async (req, res) => {
+  const tipo = req.params.tipo;
+
+  try {
+    const [rows] = await db.execute(`
+      SELECT id_publicacion, titulo, descripcion, calificacion, imagen, tipo
+      FROM publicaciones
+      WHERE tipo = ? AND estado = 'publicada'
+    `, [tipo]);
+
+    const publicaciones = rows.map(pub => ({
+      ...pub,
+      imagen: pub.imagen ? Buffer.from(pub.imagen).toString('base64') : null
+    }));
+
+    res.json(publicaciones);
+  } catch (error) {
+    console.error("Error al obtener publicaciones:", error);
+    res.status(500).json({ message: "Error al obtener publicaciones" });
+  }
+});
+
 
 module.exports = router;
