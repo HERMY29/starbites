@@ -75,5 +75,29 @@ router.get('/tipo/:tipo', async (req, res) => {
   }
 });
 
+router.get('/:id', async (req, res) => {
+  const id = req.params.id;
+
+  try {
+    const [rows] = await db.execute(`
+      SELECT titulo, descripcion, autor, calificacion, categoria, imagen 
+      FROM publicaciones 
+      WHERE id_publicacion = ?
+    `, [id]);
+
+    if (rows.length === 0) {
+      return res.status(404).json({ message: 'Publicación no encontrada' });
+    }
+
+    const pub = rows[0];
+    pub.imagen = pub.imagen ? Buffer.from(pub.imagen).toString('base64') : null;
+
+    res.json(pub);
+  } catch (error) {
+    console.error("Error al obtener publicación:", error);
+    res.status(500).json({ message: "Error del servidor" });
+  }
+});
+
 
 module.exports = router;

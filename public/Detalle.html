@@ -1,20 +1,23 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Star Bites - Detalle</title>
   <link rel="stylesheet" href="Detalle.css">
 
-<script>
-  const params = new URLSearchParams(window.location.search);
-  const id = params.get("id");
-  console.log("ID de la publicación:", id);
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get("id");
+    console.log("ID de la publicación:", id);
 
-</script>
+  </script>
+
 
 
 </head>
+
 <body>
   <div class="container">
     <!-- Barra superior -->
@@ -24,8 +27,30 @@
       </div>
       <nav class="nav">
         <ul>
-          <li><a href="#">Inicio</a></li>
-                    <li><input type="text" placeholder="Búsqueda avanzada" class="search-box"></li>
+          <li><a href="user_main.html">Inicio</a></li>
+
+          <li style="position: relative;">
+            <input type="text" id="busquedaGlobal" placeholder="Búsqueda avanzada" class="search-box"
+              onkeyup="filtrarGlobal()">
+            <ul id="resultadosBusqueda" style="
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: #222;
+    color: white;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-radius: 0 0 8px 8px;
+    z-index: 1000;
+    display: none;
+    pointer-events: none;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+  "></ul>
+          </li>
+
+
 
           <li><a href="#">Peliculas</a></li>
           <li><a href="#">Series</a></li>
@@ -40,76 +65,234 @@
     <!-- Detalle de la serie -->
     <section class="detail-section">
       <div class="image">
-        <img src="Imagenes/steven-universe.png" alt="Steven Universe">
+        <img id="detalle-imagen" src="Imagenes/np.png" alt="Portada publicación">
       </div>
       <div class="detail-info">
-        <h1>STEVEN UNIVERSE SEASON 1 - 4</h1>
-        
-        <!-- Contenedor con bordes redondeados para toda la información -->
+        <h1 id="detalle-titulo">Cargando título…</h1>
+
+
         <div class="info-container">
           <!-- Medidor de Star Bites -->
           <div class="medidor">
             <div class="estrella">
               <img src="Imagenes/estrella.png" alt="Estrella">
             </div>
-            <h2>97%</h2>
+            <h2 id="detalle-calificacion">0%</h2>
           </div>
-          
+
           <!-- Autor y Tags -->
           <div class="author-tags">
-            <span>Autor: REBECA SUGAR</span>
-            <span>Tags: <strong>Fantasy, Drama</strong></span>
+            <span id="detalle-autor">Autor: —</span>
+            <span id="detalle-tags">Tags: —</span>
           </div>
-          
-          <p class="description">
-            Steven Universe es un héroe medio humano, medio gema que está aprendiendo a salvar el mundo con los poderes mágicos de su ombligo. Steven no puede ser tan poderoso como las Gemas de Cristal, o tan listo, pero eso no le impide unirse a Garnet, Amatista y Perla en sus aventuras mágicas.
+
+          <p id="detalle-descripcion" class="description">
+            Cargando descripción…
           </p>
         </div>
 
-        <div class="comments">
-          <h3>COMENTARIOS</h3>
-          <div class="comment">
-            <div class="user-info">
-              <img src="Imagenes/perfil-de-usuario.png" alt="Usuario" class="user-image">
-              <p><strong>CARURA25</strong></p>
-            </div>
-            <p>TA BONITO <3</p>
-          </div>
-          <!-- Comentario 2 -->
-          <div class="comment">
-            <div class="user-info">
-              <img src="Imagenes/perfil-de-usuario.png" alt="Usuario" class="user-image">
-              <p><strong>JUANPEREZ</strong></p>
-            </div>
-            <p>Me encanta Steven Universe, ¡tiene una trama increíble!</p>
-          </div>
-          <!-- Comentario 3 -->
-          <div class="comment">
-            <div class="user-info">
-              <img src="Imagenes/perfil-de-usuario.png" alt="Usuario" class="user-image">
-              <p><strong>MARIA01</strong></p>
-            </div>
-            <p>Los personajes son geniales, sobre todo Garnet y Amatista.</p>
-          </div>
-          <!-- Comentario 4 -->
-          <div class="comment">
-            <div class="user-info">
-              <img src="Imagenes/perfil-de-usuario.png" alt="Usuario" class="user-image">
-              <p><strong>LUIS_G</strong></p>
-            </div>
-            <p>Una de mis series favoritas, ¡siempre la recomendaré!</p>
-          </div>
-        </div>
-        
-          
-          <!-- Sección de enviar comentario -->
-          <div class="comment-input-container">
-            <textarea class="comment-input" placeholder="Escribe tu comentario..."></textarea>
-            <button class="send-button">Enviar</button>
-          </div>
+<div class="comments" id="comentarios-container">
+  <h3>COMENTARIOS</h3>
+</div>
+
+
+
+        <!-- Sección de enviar comentario -->
+        <div class="comment-input-container">
+<textarea class="comment-input" id="comentarioTexto" placeholder="Escribe tu comentario..."></textarea>
+<button class="send-button" onclick="enviarComentario()">Enviar</button>
+
         </div>
       </div>
-    </section>
   </div>
+  </section>
+  </div>
+
+
+
+
+
+
+
+  <script>
+    async function cargarDetalle() {
+      const params = new URLSearchParams(window.location.search);
+      const id = params.get("id");
+      if (!id) return;
+
+      try {
+        const res = await fetch(`http://localhost:3000/publicaciones/${id}`);
+        const pub = await res.json();
+
+        document.getElementById("detalle-titulo").textContent = pub.titulo;
+        document.getElementById("detalle-calificacion").textContent = `${pub.calificacion}%`;
+        document.getElementById("detalle-autor").textContent = `Autor: ${pub.autor || 'Desconocido'}`;
+        document.getElementById("detalle-tags").textContent = `Tags: ${pub.categoria || 'N/A'}`;
+        document.getElementById("detalle-descripcion").textContent = pub.descripcion;
+
+        const imagen = document.getElementById("detalle-imagen");
+        imagen.src = pub.imagen ? `data:image/jpeg;base64,${pub.imagen}` : "Imagenes/np.png";
+        imagen.alt = pub.titulo;
+      } catch (error) {
+        console.error("Error cargando detalle:", error);
+      }
+    }
+
+
+
+    window.onload = cargarDetalle;
+  </script>
+
+
+  <script>
+    let todasLasPublicaciones = [];
+
+    async function cargarTodasLasPublicaciones() {
+      try {
+        const res = await fetch("http://localhost:3000/publicaciones/titulos");
+        todasLasPublicaciones = await res.json();
+      } catch (error) {
+        console.error("Error al cargar publicaciones:", error);
+      }
+    }
+
+    function filtrarGlobal() {
+      const input = document.getElementById("busquedaGlobal").value.toLowerCase();
+      const lista = document.getElementById("resultadosBusqueda");
+      lista.innerHTML = "";
+
+      if (!input) {
+        lista.style.display = "none";
+        lista.style.pointerEvents = "none";
+        return;
+      }
+
+      const filtrados = todasLasPublicaciones.filter(pub =>
+        pub.titulo.toLowerCase().includes(input)
+      );
+
+      if (filtrados.length === 0) {
+        lista.style.display = "none";
+        lista.style.pointerEvents = "none";
+        return;
+      }
+
+      filtrados.forEach(pub => {
+        const li = document.createElement("li");
+        li.textContent = pub.titulo;
+        li.style.padding = "10px";
+        li.style.cursor = "pointer";
+        li.onmouseover = () => li.style.background = "#333";
+        li.onmouseout = () => li.style.background = "transparent";
+        li.onclick = () => {
+          window.location.href = `Detalle.html?id=${pub.id_publicacion}`;
+        };
+        lista.appendChild(li);
+      });
+
+      lista.style.display = "block";
+      lista.style.pointerEvents = "auto";
+    }
+
+    async function cargarDetalle() {
+      const params = new URLSearchParams(window.location.search);
+      const id = params.get("id");
+      if (!id) return;
+
+      try {
+        const res = await fetch(`http://localhost:3000/publicaciones/${id}`);
+        const pub = await res.json();
+
+        document.getElementById("detalle-titulo").textContent = pub.titulo;
+        document.getElementById("detalle-calificacion").textContent = `${pub.calificacion}%`;
+        document.getElementById("detalle-autor").textContent = `Autor: ${pub.autor || 'Desconocido'}`;
+        document.getElementById("detalle-tags").textContent = `Tags: ${pub.categoria || 'N/A'}`;
+        document.getElementById("detalle-descripcion").textContent = pub.descripcion;
+
+        const imagen = document.getElementById("detalle-imagen");
+        imagen.src = pub.imagen ? `data:image/jpeg;base64,${pub.imagen}` : "Imagenes/np.png";
+        imagen.alt = pub.titulo;
+      } catch (error) {
+        console.error("Error cargando detalle:", error);
+      }
+    }
+
+    // ✅ Combina ambas cargas en una sola inicialización
+    window.onload = () => {
+      cargarTodasLasPublicaciones();
+      cargarDetalle();
+      cargarComentarios();
+
+
+      document.addEventListener("click", function (e) {
+        const input = document.getElementById("busquedaGlobal");
+        const lista = document.getElementById("resultadosBusqueda");
+        if (!input.contains(e.target) && !lista.contains(e.target)) {
+          lista.style.display = "none";
+          lista.style.pointerEvents = "none";
+        }
+      });
+    };
+  </script>
+
+<script>
+async function cargarComentarios() {
+  const id = new URLSearchParams(window.location.search).get("id");
+  const res = await fetch(`http://localhost:3000/comentarios/${id}`);
+  const comentarios = await res.json();
+  const contenedor = document.getElementById("comentarios-container");
+
+  // Limpia todo menos el título "COMENTARIOS"
+  contenedor.innerHTML = "<h3>COMENTARIOS</h3>";
+
+comentarios.forEach(com => {
+  const div = document.createElement("div");
+  div.classList.add("comment");
+  div.innerHTML = `
+    <div class="user-info">
+      <img src="Imagenes/perfil-de-usuario.png" alt="Usuario" class="user-image">
+      <p><strong>COMENTARIO</strong></p>
+    </div>
+    <p>${com.contenido}</p>
+  `;
+  contenedor.appendChild(div);
+});
+
+}
+
+async function enviarComentario() {
+  const id = new URLSearchParams(window.location.search).get("id");
+  const texto = document.getElementById("comentarioTexto").value.trim();
+
+  if (!texto) {
+    return alert("Escribe algo primero.");
+  }
+
+  try {
+    const res = await fetch(`http://localhost:3000/comentarios/${id}`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ contenido: texto }) // 👈 solo enviamos contenido
+    });
+
+    const data = await res.json();
+
+    if (res.ok) {
+      document.getElementById("comentarioTexto").value = "";
+      await cargarComentarios(); // recarga los comentarios
+    } else {
+      alert(data.message || "Error al guardar comentario");
+    }
+  } catch (error) {
+    console.error("Error al guardar comentario:", error);
+    alert("Error al conectar con el servidor.");
+  }
+}
+
+</script>
+
+
+
 </body>
+
 </html>
