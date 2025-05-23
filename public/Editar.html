@@ -84,27 +84,23 @@
     <input type="text" id="busquedaTitulo" placeholder="Escribe para buscar..." class="input-edit" style="width: 100%;" onkeyup="filtrarTitulos()">
 
     <ul id="listaTitulos" style="
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      background-color: #444;
-      border-radius: 8px;
-      position: absolute;
-      top: 100%;
-      left: 0;
-      width: 100%;
-      z-index: 1000;
-      display: none;
-      text-align: left;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.4);
-    ">
-      <li style="padding: 8px; color: white; cursor: pointer;">Breaking Bad</li>
-      <li style="padding: 8px; color: white; cursor: pointer;">Barbie</li>
-      <li style="padding: 8px; color: white; cursor: pointer;">BoJack Horseman</li>
-      <li style="padding: 8px; color: white; cursor: pointer;">Avatar</li>
-      <li style="padding: 8px; color: white; cursor: pointer;">Better Call Saul</li>
-      <li style="padding: 8px; color: white; cursor: pointer;">Stranger Things</li>
-    </ul>
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  background-color: #444;
+  border-radius: 8px;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  display: none;
+  text-align: left;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+">
+ 
+</ul>
+
   </div>
 </section>
 
@@ -192,6 +188,32 @@
   }
 </script>
 
+<script>
+  // Obtener títulos desde backend
+  async function cargarTitulos() {
+    try {
+      const res = await fetch("http://localhost:3000/publicaciones/titulos");
+      const titulos = await res.json();
+
+      const lista = document.getElementById("listaTitulos");
+      lista.innerHTML = ""; // Limpiar
+
+      titulos.forEach(pub => {
+        const li = document.createElement("li");
+        li.textContent = pub.titulo;
+        li.style.padding = "8px";
+        li.style.color = "white";
+        li.style.cursor = "pointer";
+        lista.appendChild(li);
+      });
+    } catch (err) {
+      console.error("Error cargando títulos:", err);
+    }
+  }
+
+  // Llama automáticamente al cargar la página
+  window.onload = cargarTitulos;
+</script>
 
 
 </body>
