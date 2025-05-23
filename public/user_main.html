@@ -41,661 +41,61 @@
     </section>
 
 
-<div id="peliculas-container" class="carousel"></div>
-<div id="series-container" class="carousel"></div>
-<div id="libros-container" class="carousel"></div>
-
-
-    <!-- Carrusel de Películas -->
-    <section class="movie-categories">
-      <h2>Películas</h2>
-      <div class="carousel-container">
-        <button class="carousel-btn left-btn" onclick="moveCarousel('peliculas', -1)">&#8592;</button>
-        <div class="carousel peliculas">
-          <!-- Poster 1 -->
-          <div class="carousel-item">
-            <div class="carousel-item-inner">
-              <img src="Imagenes/fnaf.png" alt="Five Nights at Freddy's">
-              <div class="carousel-item-title">Five Nights at Freddy's</div>
-              <div class="carousel-item-info">
-                <p>Un guardia nocturno atrapado en un lugar espeluznante.</p>
-                <div class="rating">
-                  <img src="Imagenes/estrella.png" alt="star"> <span>97%</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Poster 2 -->
-          <div class="carousel-item">
-            <div class="carousel-item-inner">
-              <a href="Detalle.html">
-                <img src="Imagenes/world.png" alt="Jurassic World">
-              </a>
-              <div class="carousel-item-title">Jurassic World</div>
-              <div class="carousel-item-info">
-                <p>Un parque con dinosaurios se convierte en una pesadilla.</p>
-                <div class="rating">
-                  <img src="Imagenes/estrella.png" alt="star"> <span>88%</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Poster 3 -->
-          <div class="carousel-item">
-            <div class="carousel-item-inner">
-              <img src="Imagenes/dog.png" alt="Dogman">
-              <div class="carousel-item-title">Dogman</div>
-              <div class="carousel-item-info">
-                <p>Un perro policía con cuerpo humano lucha contra el crimen.</p>
-                <div class="rating">
-                  <img src="Imagenes/estrella.png" alt="star"> <span>80%</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Poster 4 -->
-          <div class="carousel-item">
-            <div class="carousel-item-inner">
-              <img src="Imagenes/flow 2.png" alt="Flow">
-              <div class="carousel-item-title">Flow</div>
-              <div class="carousel-item-info">
-                <p>Un gato se adentra en un mundo misterioso lleno de magia.</p>
-                <div class="rating">
-                  <img src="Imagenes/estrella.png" alt="star"> <span>90%</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Poster 5 -->
-          <div class="carousel-item">
-            <div class="carousel-item-inner">
-              <img src="Imagenes/robot.png" alt="Robot Salvaje">
-              <div class="carousel-item-title">Robot Salvaje</div>
-              <div class="carousel-item-info">
-                <p>Un robot en un mundo destruido busca su propósito.</p>
-                <div class="rating">
-                  <img src="Imagenes/estrella.png" alt="star"> <span>85%</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Poster 6 -->
-          <div class="carousel-item">
-            <div class="carousel-item-inner">
-              <img src="Imagenes/guard.jpg" alt="Guardianes de la Galaxia Vol 3">
-              <div class="carousel-item-title">Guardianes de la Galaxia Vol 3</div>
-              <div class="carousel-item-info">
-                <p>La última aventura de los guardianes enfrentando nuevos enemigos.</p>
-                <div class="rating">
-                  <img src="Imagenes/estrella.png" alt="star"> <span>92%</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Poster 7 -->
-          <div class="carousel-item">
-            <div class="carousel-item-inner">
-              <img src="Imagenes/jaws.jpg" alt="Jaws">
-              <div class="carousel-item-title">Jaws</div>
-              <div class="carousel-item-info">
-                <p>Un tiburón asesino aterroriza una playa. Tres hombres deben detenerlo.</p>
-                <div class="rating">
-                  <img src="Imagenes/estrella.png" alt="star"> <span>95%</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Poster 8 -->
-          <div class="carousel-item">
-            <div class="carousel-item-inner">
-              <img src="Imagenes/kung.jpg" alt="Kung Fu Panda">
-              <div class="carousel-item-title">Kung Fu Panda</div>
-              <div class="carousel-item-info">
-                <p>Un panda torpe se convierte en el guerrero dragón para salvar su hogar.</p>
-                <div class="rating">
-                  <img src="Imagenes/estrella.png" alt="star"> <span>93%</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Poster 9 -->
-          <div class="carousel-item">
-            <div class="carousel-item-inner">
-              <img src="Imagenes/luca.jpg" alt="Luca Disney">
-              <div class="carousel-item-title">Luca</div>
-              <div class="carousel-item-info">
-                <p>Un niño monstruo marino explora el mundo humano en verano.</p>
-                <div class="rating">
-                  <img src="Imagenes/estrella.png" alt="star"> <span>90%</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Poster 10 -->
-          <div class="carousel-item">
-            <div class="carousel-item-inner">
-              <img src="Imagenes/nun.png" alt="La Monja">
-              <div class="carousel-item-title">La Monja</div>
-              <div class="carousel-item-info">
-                <p>Una monja persigue una entidad demoníaca en un convento.</p>
-                <div class="rating">
-                  <img src="Imagenes/estrella.png" alt="star"> <span>78%</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Poster 11 -->
-          <div class="carousel-item">
-            <div class="carousel-item-inner">
-              <img src="Imagenes/princesa.jpg" alt="La Princesa y el Sapo">
-              <div class="carousel-item-title">La Princesa y el Sapo</div>
-              <div class="carousel-item-info">
-                <p>Una princesa y un príncipe convertido en sapo luchan por el amor.</p>
-                <div class="rating">
-                  <img src="Imagenes/estrella.png" alt="star"> <span>84%</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Poster 12 -->
-          <div class="carousel-item">
-            <div class="carousel-item-inner">
-              <img src="Imagenes/shrek.jpeg" alt="Shrek">
-              <div class="carousel-item-title">Shrek</div>
-              <div class="carousel-item-info">
-                <p>Un ogro gruñón se embarca en una misión para salvar a una princesa.</p>
-                <div class="rating">
-                  <img src="Imagenes/estrella.png" alt="star"> <span>89%</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Poster 13 -->
-          <div class="carousel-item">
-            <div class="carousel-item-inner">
-              <img src="Imagenes/sonic3.jpg" alt="Sonic 3">
-              <div class="carousel-item-title">Sonic 3</div>
-              <div class="carousel-item-info">
-                <p>Sonic enfrenta nuevos desafíos para salvar el mundo de una amenaza peligrosa.</p>
-                <div class="rating">
-                  <img src="Imagenes/estrella.png" alt="star"> <span>88%</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Poster 14 -->
-          <div class="carousel-item">
-            <div class="carousel-item-inner">
-              <img src="Imagenes/spiderman.jpg" alt="The Amazing Spider-Man 2">
-              <div class="carousel-item-title">The Amazing Spider-Man 2</div>
-              <div class="carousel-item-info">
-                <p>Peter Parker lucha contra Electro mientras explora secretos de su pasado.</p>
-                <div class="rating">
-                  <img src="Imagenes/estrella.png" alt="star"> <span>81%</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Poster 15 -->
-          <div class="carousel-item">
-            <div class="carousel-item-inner">
-              <img src="Imagenes/star.jpg" alt="Star Wars 1">
-              <div class="carousel-item-title">Star Wars 1</div>
-              <div class="carousel-item-info">
-                <p>Un joven Jedi protege a una reina mientras enfrenta el lado oscuro de la galaxia.</p>
-                <div class="rating">
-                  <img src="Imagenes/estrella.png" alt="star"> <span>92%</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <button class="carousel-btn right-btn" onclick="moveCarousel('peliculas', 1)">&#8594;</button>
-      </div>
-    </section>
-
-    <!-- Carrusel de Libros -->
-    <section class="movie-categories">
-      <h2>Libros</h2>
-      <div class="carousel-container">
-        <button class="carousel-btn left-btn" onclick="moveCarousel('libros', -1)">&#8592;</button>
-        <div class="carousel libros">
-          <!-- Poster 1 -->
-          <div class="carousel-item">
-            <div class="carousel-item-inner">
-              <img src="Imagenes/ANILLO.jpg" alt="El señor de los anillos">
-              <div class="carousel-item-title">El Señor de los Anillos</div>
-              <div class="carousel-item-info">
-                <p>Un joven hobbit debe destruir un anillo para evitar que un oscuro poder conquiste la Tierra Media.</p>
-                <div class="rating">
-                  <img src="Imagenes/estrella.png" alt="star"> <span>98%</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Poster 2 -->
-          <div class="carousel-item">
-            <div class="carousel-item-inner">
-              <img src="Imagenes/codigo.jpg" alt="Código Da Vinci">
-              <div class="carousel-item-title">Código Da Vinci</div>
-              <div class="carousel-item-info">
-                <p>Un experto en símbolos se ve envuelto en una conspiración mundial para resolver un misterio histórico.</p>
-                <div class="rating">
-                  <img src="Imagenes/estrella.png" alt="star"> <span>92%</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Poster 3 -->
-          <div class="carousel-item">
-            <div class="carousel-item-inner">
-              <img src="Imagenes/conde.jpg" alt="El Conde de Montecristo">
-              <div class="carousel-item-title">El Conde de Montecristo</div>
-              <div class="carousel-item-info">
-                <p>Un hombre injustamente encarcelado busca venganza contra aquellos que lo traicionaron.</p>
-                <div class="rating">
-                  <img src="Imagenes/estrella.png" alt="star"> <span>93%</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Poster 4 -->
-          <div class="carousel-item">
-            <div class="carousel-item-inner">
-              <img src="Imagenes/cuatro.jpg" alt="Los cuatro acuerdos">
-              <div class="carousel-item-title">Los Cuatro Acuerdos</div>
-              <div class="carousel-item-info">
-                <p>Un libro de sabiduría tolteca que enseña principios para vivir una vida plena.</p>
-                <div class="rating">
-                  <img src="Imagenes/estrella.png" alt="star"> <span>90%</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Poster 5 -->
-          <div class="carousel-item">
-            <div class="carousel-item-inner">
-              <img src="Imagenes/RD.png" alt="Room Disaster">
-              <div class="carousel-item-title">Room Disaster</div>
-              <div class="carousel-item-info">
-                <p>Cinco universitarias enfrentan desafíos mientras forjan una amistad que cambiará sus vidas.</p>
-                <div class="rating">
-                  <img src="Imagenes/estrella.png" alt="star"> <span>86%</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Poster 6 -->
-          <div class="carousel-item">
-            <div class="carousel-item-inner">
-              <img src="Imagenes/HAM.jpg" alt="Hamlet">
-              <div class="carousel-item-title">Hamlet</div>
-              <div class="carousel-item-info">
-                <p>El príncipe Hamlet busca vengar la muerte de su padre mientras lidia con la corrupción en su reino.</p>
-                <div class="rating">
-                  <img src="Imagenes/estrella.png" alt="star"> <span>90%</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Poster 7 -->
-          <div class="carousel-item">
-            <div class="carousel-item-inner">
-              <img src="Imagenes/harry.jpg" alt="Harry Potter">
-              <div class="carousel-item-title">Harry Potter</div>
-              <div class="carousel-item-info">
-                <p>Un niño huérfano descubre que es un mago y asiste a una escuela de magia.</p>
-                <div class="rating">
-                  <img src="Imagenes/estrella.png" alt="star"> <span>95%</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Poster 8 -->
-          <div class="carousel-item">
-            <div class="carousel-item-inner">
-              <img src="Imagenes/juego.jpg" alt="Los juegos del hambre">
-              <div class="carousel-item-title">Los Juegos del Hambre</div>
-              <div class="carousel-item-info">
-                <p>En un futuro distópico, una joven lucha por sobrevivir en un sangriento juego televisado.</p>
-                <div class="rating">
-                  <img src="Imagenes/estrella.png" alt="star"> <span>91%</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Poster 9 -->
-          <div class="carousel-item">
-            <div class="carousel-item-inner">
-              <img src="Imagenes/kono.jpg" alt="Konosuba">
-              <div class="carousel-item-title">Konosuba</div>
-              <div class="carousel-item-info">
-                <p>Un hombre reencarnado en un mundo de fantasía vive aventuras cómicas con un grupo de excéntricos.</p>
-                <div class="rating">
-                  <img src="Imagenes/estrella.png" alt="star"> <span>80%</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Poster 10 -->
-          <div class="carousel-item">
-            <div class="carousel-item-inner">
-              <img src="Imagenes/HAB.jpg" alt="Hábitos atómicos">
-              <div class="carousel-item-title">Hábitos Atómicos</div>
-              <div class="carousel-item-info">
-                <p>Un enfoque práctico para crear buenos hábitos y eliminar los malos mediante pequeños cambios diarios.</p>
-                <div class="rating">
-                  <img src="Imagenes/estrella.png" alt="star"> <span>90%</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Poster 11 -->
-          <div class="carousel-item">
-            <div class="carousel-item-inner">
-              <img src="Imagenes/MIL.jpg" alt="Las mil y una noches">
-              <div class="carousel-item-title">Las mil y una noches</div>
-              <div class="carousel-item-info">
-                <p>Cuentos del Medio Oriente llenos de magia, romance y aventuras fantásticas.</p>
-                <div class="rating">
-                  <img src="Imagenes/estrella.png" alt="star"> <span>85%</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Poster 12 -->
-          <div class="carousel-item">
-            <div class="carousel-item-inner">
-              <img src="Imagenes/ody.jpg" alt="La odisea">
-              <div class="carousel-item-title">La Odisea</div>
-              <div class="carousel-item-info">
-                <p>Las épicas aventuras de Odiseo mientras lucha por regresar a su hogar después de la guerra de Troya.</p>
-                <div class="rating">
-                  <img src="Imagenes/estrella.png" alt="star"> <span>91%</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Poster 13 -->
-          <div class="carousel-item">
-            <div class="carousel-item-inner">
-              <img src="Imagenes/principe.jpg" alt="El principito">
-              <div class="carousel-item-title">El Principito</div>
-              <div class="carousel-item-info">
-                <p>Un niño de otro planeta enseña lecciones sobre la vida, la amistad y el amor.</p>
-                <div class="rating">
-                  <img src="Imagenes/estrella.png" alt="star"> <span>88%</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Poster 14 -->
-          <div class="carousel-item">
-            <div class="carousel-item-inner">
-              <img src="Imagenes/musho.jpg" alt="Mushoku Tensei">
-              <div class="carousel-item-title">Mushoku Tensei</div>
-              <div class="carousel-item-info">
-                <p>Un hombre reencarnado en un mundo de fantasía busca una nueva vida sin arrepentimientos.</p>
-                <div class="rating">
-                  <img src="Imagenes/estrella.png" alt="star"> <span>85%</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Poster 15 -->
-          <div class="carousel-item">
-            <div class="carousel-item-inner">
-              <img src="Imagenes/LUNA.png" alt="Tsukimichi: Moonlit Fantasy">
-              <div class="carousel-item-title">Tsukimichi: Moonlit Fantasy</div>
-              <div class="carousel-item-info">
-                <p>Un hombre es desterrado de un mundo de fantasía, pero decide enfrentar su destino.</p>
-                <div class="rating">
-                  <img src="Imagenes/estrella.png" alt="star"> <span>87%</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <button class="carousel-btn right-btn" onclick="moveCarousel('libros', 1)">&#8594;</button>
-      </div>
-    </section>
-
-    <!-- Carrusel de Series -->
-    <section class="movie-categories">
-      <h2>Series</h2>
-      <div class="carousel-container">
-        <button class="carousel-btn left-btn" onclick="moveCarousel('series', -1)">&#8592;</button>
-        <div class="carousel series">
-          <!-- Poster 1 -->
-          <div class="carousel-item">
-            <div class="carousel-item-inner">
-              <img src="Imagenes/arcane.jpg" alt="Arcane">
-              <div class="carousel-item-title">Arcane</div>
-              <div class="carousel-item-info">
-                <p>Basado en el videojuego League of Legends.</p>
-                <div class="rating">
-                  <img src="Imagenes/estrella.png" alt="star"> <span>93%</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Poster 2 -->
-          <div class="carousel-item">
-            <div class="carousel-item-inner">
-              <img src="Imagenes/bluey.jpg" alt="Bluey">
-              <div class="carousel-item-title">Bluey</div>
-              <div class="carousel-item-info">
-                <p>Las travesuras de Bluey y sus aventuras familiares.</p>
-                <div class="rating">
-                  <img src="Imagenes/estrella.png" alt="star"> <span>90%</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Poster 3 -->
-          <div class="carousel-item">
-            <div class="carousel-item-inner">
-              <img src="Imagenes/boys.jpg" alt="The Boys">
-              <div class="carousel-item-title">The Boys</div>
-              <div class="carousel-item-info">
-                <p>Exponen la corrupción de los superhéroes en un mundo donde ellos tienen el poder.</p>
-                <div class="rating">
-                  <img src="Imagenes/estrella.png" alt="star"> <span>92%</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Poster 4 -->
-          <div class="carousel-item">
-            <div class="carousel-item-inner">
-              <img src="Imagenes/BREAK.jpg" alt="Breaking Bad">
-              <div class="carousel-item-title">Breaking Bad</div>
-              <div class="carousel-item-info">
-                <p>Un profesor de química se convierte en fabricante de metanfetaminas.</p>
-                <div class="rating">
-                  <img src="Imagenes/estrella.png" alt="star"> <span>95%</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Poster 5 -->
-          <div class="carousel-item">
-            <div class="carousel-item-inner">
-              <img src="Imagenes/CLOSE.jpg" alt="Close Enough">
-              <div class="carousel-item-title">Close Enough</div>
-              <div class="carousel-item-info">
-                <p>Una serie animada sobre las desventuras de una pareja joven.</p>
-                <div class="rating">
-                  <img src="Imagenes/estrella.png" alt="star"> <span>88%</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Poster 6 -->
-          <div class="carousel-item">
-            <div class="carousel-item-inner">
-              <img src="Imagenes/DEVIL.jpg" alt="Devil May Cry">
-              <div class="carousel-item-title">Devil May Cry</div>
-              <div class="carousel-item-info">
-                <p>Un cazador de demonios enfrenta criaturas oscuras.</p>
-                <div class="rating">
-                  <img src="Imagenes/estrella.png" alt="star"> <span>90%</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Poster 7 -->
-          <div class="carousel-item">
-            <div class="carousel-item-inner">
-              <img src="Imagenes/digital.jpg" alt="Amazing Digital Circus">
-              <div class="carousel-item-title">Amazing Digital Circus</div>
-              <div class="carousel-item-info">
-                <p>Un circo futurista donde las reglas de la realidad no existen.</p>
-                <div class="rating">
-                  <img src="Imagenes/estrella.png" alt="star"> <span>87%</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Poster 8 -->
-          <div class="carousel-item">
-            <div class="carousel-item-inner">
-              <img src="Imagenes/superman.jpg" alt="Mis Aventuras con Superman">
-              <div class="carousel-item-title">Mis Aventuras con Superman</div>
-              <div class="carousel-item-info">
-                <p>La historia de cómo Clark Kent se convierte en Superman.</p>
-                <div class="rating">
-                  <img src="Imagenes/estrella.png" alt="star"> <span>91%</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Poster 9 -->
-          <div class="carousel-item">
-            <div class="carousel-item-inner">
-              <img src="Imagenes/steven-universe.png" alt="Steven Universe">
-              <div class="carousel-item-title">Steven Universe</div>
-              <div class="carousel-item-info">
-                <p>Un niño llamado Steven y sus gemas mágicas protegen la Tierra.</p>
-                <div class="rating">
-                  <img src="Imagenes/estrella.png" alt="star"> <span>94%</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Poster 10 -->
-          <div class="carousel-item">
-            <div class="carousel-item-inner">
-              <img src="Imagenes/us.jpeg" alt="The Last of Us">
-              <div class="carousel-item-title">The Last of Us</div>
-              <div class="carousel-item-info">
-                <p>Una historia sobre la lucha por sobrevivir en un mundo post-apocalíptico.</p>
-                <div class="rating">
-                  <img src="Imagenes/estrella.png" alt="star"> <span>92%</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Poster 11 -->
-          <div class="carousel-item">
-            <div class="carousel-item-inner">
-              <img src="Imagenes/walking.jpg" alt="The Walking Dead">
-              <div class="carousel-item-title">The Walking Dead</div>
-              <div class="carousel-item-info">
-                <p>Supervivientes luchan por mantenerse con vida enfrentando zombis.</p>
-                <div class="rating">
-                  <img src="Imagenes/estrella.png" alt="star"> <span>91%</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Poster 12 -->
-          <div class="carousel-item">
-            <div class="carousel-item-inner">
-              <img src="Imagenes/ONE.jpg" alt="One Piece">
-              <div class="carousel-item-title">One Piece</div>
-              <div class="carousel-item-info">
-                <p>Luffy y su tripulación enfrentan desafíos para encontrar el tesoro One Piece.</p>
-                <div class="rating">
-                  <img src="Imagenes/estrella.png" alt="star"> <span>93%</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Poster 13 -->
-          <div class="carousel-item">
-            <div class="carousel-item-inner">
-              <img src="Imagenes/kaiju.jpg" alt="Kaiju N8">
-              <div class="carousel-item-title">Kaiju N8</div>
-              <div class="carousel-item-info">
-                <p>Un hombre se convierte en un monstruo para defender la humanidad.</p>
-                <div class="rating">
-                  <img src="Imagenes/estrella.png" alt="star"> <span>88%</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Poster 14 -->
-          <div class="carousel-item">
-            <div class="carousel-item-inner">
-              <img src="Imagenes/FINAL.jpg" alt="Final Space">
-              <div class="carousel-item-title">Final Space</div>
-              <div class="carousel-item-info">
-                <p>Un astronauta y su compañero alienígena deben salvar al universo.</p>
-                <div class="rating">
-                  <img src="Imagenes/estrella.png" alt="star"> <span>90%</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Poster 15 -->
-          <div class="carousel-item">
-            <div class="carousel-item-inner">
-              <img src="Imagenes/moon.jpg" alt="Moon Knight">
-              <div class="carousel-item-title">Moon Knight</div>
-              <div class="carousel-item-info">
-                <p>Marc Spector lucha contra el crimen como Moon Knight mientras enfrenta sus propios demonios.</p>
-                <div class="rating">
-                  <img src="Imagenes/estrella.png" alt="star"> <span>92%</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <button class="carousel-btn right-btn" onclick="moveCarousel('series', 1)">&#8594;</button>
-      </div>
-    </section>
+<!-- Carrusel de Películas -->
+<section class="movie-categories">
+  <h2>Películas</h2>
+  <div class="carousel-container">
+    <button class="carousel-btn left-btn" onclick="moveCarousel('peliculas', -1)">&#8592;</button>
+    <div class="carousel peliculas"></div>
+    <button class="carousel-btn right-btn" onclick="moveCarousel('peliculas', 1)">&#8594;</button>
   </div>
+</section>
 
+<!-- Carrusel de Series -->
+<section class="movie-categories">
+  <h2>Series</h2>
+  <div class="carousel-container">
+    <button class="carousel-btn left-btn" onclick="moveCarousel('series', -1)">&#8592;</button>
+    <div class="carousel series"></div>
+    <button class="carousel-btn right-btn" onclick="moveCarousel('series', 1)">&#8594;</button>
+  </div>
+</section>
 
+<!-- Carrusel de Libros -->
+<section class="movie-categories">
+  <h2>Libros</h2>
+  <div class="carousel-container">
+    <button class="carousel-btn left-btn" onclick="moveCarousel('libros', -1)">&#8592;</button>
+    <div class="carousel libros"></div>
+    <button class="carousel-btn right-btn" onclick="moveCarousel('libros', 1)">&#8594;</button>
+  </div>
+</section>
 
-<script>
-  async function cargarPublicaciones(tipo, contenedorId) {
+  <script>
+  async function cargarPublicaciones(tipo, claseCSS) {
     try {
       const res = await fetch(`http://localhost:3000/publicaciones/tipo/${tipo}`);
       const publicaciones = await res.json();
-      const contenedor = document.getElementById(contenedorId);
-      contenedor.innerHTML = ''; // limpiar
+      const contenedor = document.querySelector(`.${claseCSS}`);
+      contenedor.innerHTML = "";
 
       publicaciones.forEach(pub => {
         const div = document.createElement("div");
-div.classList.add("carousel-item");
+        div.classList.add("carousel-item");
 
-div.innerHTML = `
-  <div class="carousel-item-inner">
-    <img src="${pub.imagen ? `data:image/jpeg;base64,${pub.imagen}` : 'Imagenes/np.png'}" alt="${pub.titulo}">
-    <div class="carousel-item-title">${pub.titulo}</div>
-    <div class="carousel-item-info">
-      <p>${pub.descripcion || 'Sin descripción disponible.'}</p>
-      <div class="rating">
-        <img src="Imagenes/estrella.png" alt="star"> <span>${pub.calificacion || 0}%</span>
-      </div>
-    </div>
-  </div>
-`;
-
-contenedor.appendChild(div);
-
+        div.innerHTML = `
+          <div class="carousel-item-inner">
+            <img src="${pub.imagen ? `data:image/jpeg;base64,${pub.imagen}` : 'Imagenes/np.png'}" alt="${pub.titulo}">
+            <div class="carousel-item-title">${pub.titulo}</div>
+            <div class="carousel-item-info">
+              <p>${pub.descripcion || "Sin descripción disponible."}</p>
+              <div class="rating">
+                <img src="Imagenes/estrella.png" alt="star"> <span>${pub.calificacion || 0}%</span>
+              </div>
+            </div>
+          </div>
+        `;
+        contenedor.appendChild(div);
       });
     } catch (error) {
       console.error("Error al cargar publicaciones:", error);
@@ -703,9 +103,9 @@ contenedor.appendChild(div);
   }
 
   window.onload = () => {
-    cargarPublicaciones("pelicula", "peliculas-container");
-    cargarPublicaciones("serie", "series-container");
-    cargarPublicaciones("libro", "libros-container");
+    cargarPublicaciones("pelicula", "peliculas");
+    cargarPublicaciones("serie", "series");
+    cargarPublicaciones("libro", "libros");
   };
 </script>
 
