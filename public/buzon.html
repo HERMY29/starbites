@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Star Bites - Peticiones</title>
+  <link rel="stylesheet" href="buzon.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Barra de navegación -->
+    <header class="header">
+      <div class="logo">
+        <img src="Imagenes/logo.png" alt="Star Bites Logo">
+      </div>
+      <nav class="nav">
+        <ul>
+          <li><a href="#">Inicio</a></li>
+          <li><input type="text" placeholder="Búsqueda avanzada" class="search-box"></li>
+          <li><a href="#">Películas</a></li>
+          <li><a href="#">Series</a></li>
+          <li><a href="#">Libros</a></li>
+        </ul>
+      </nav>
+      <div class="user-icon">
+        <img src="Imagenes/perfil-de-usuario.png" alt="Perfil Usuario">
+      </div>
+    </header>
+
+    <!-- Título y filtro de las peticiones -->
+    <div class="peticion-titulo">
+      <h1>Peticiones de los Usuarios</h1>
+    </div>
+
+    <!-- Filtro para las peticiones -->
+    <div class="filtro">
+      <label for="filtro">Filtrar por: </label>
+      <select id="filtro" name="filtro">
+        <option value="todas">Todas</option>
+        <option value="pelicula">Películas</option>
+        <option value="serie">Series</option>
+        <option value="libro">Libros</option>
+      </select>
+    </div>
+
+    <!-- Contenedor de peticiones -->
+    <div class="peticiones"></div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const filtro = document.getElementById("filtro");
+
+      async function cargarPeticiones() {
+        const tipoFiltro = filtro.value;
+        const respuesta = await fetch('/api/peticiones?estado=aceptada');
+        const peticiones = await respuesta.json();
+        const contenedor = document.querySelector(".peticiones");
+        contenedor.innerHTML = '';
+
+        const categorias = { pelicula: [], serie: [], libro: [] };
+        peticiones.forEach(p => categorias[p.tipo].push(p));
+
+        for (const tipo in categorias) {
+          if (tipoFiltro !== 'todas' && tipo !== tipoFiltro) continue;
+
+          const titulo = tipo.charAt(0).toUpperCase() + tipo.slice(1) + 's';
+          contenedor.innerHTML += `<h2>${titulo}</h2>`;
+          categorias[tipo].forEach(p => {
+
+             const estaAceptada = p.estado === 'aceptada';
+
+            contenedor.innerHTML += `
+              <div class="peticiones-container" data-id="${p.id_peticion}" style="${estaAceptada ? 'background-color: #2ecc71;' : ''}">
+               <img src="Imagenes/perfil-de-usuario.png" class="user-photo">
+               <div class="usuario-tag">${p.tipo.charAt(0).toUpperCase() + p.tipo.slice(1)}</div>
+               <div>
+                 <p><strong>${p.usuario}</strong></p>
+                 <p><i>Petición: ${p.mensaje}</i></p>
+               </div>
+               <div class="accion-btns">
+                <button onclick="cambiarEstado(${p.id_peticion}, 'aceptada', this)" ${estaAceptada ? 'disabled' : ''}>Aceptar</button>
+                <button onclick="cambiarEstado(${p.id_peticion}, 'rechazada', this)" ${estaAceptada ? 'disabled' : ''}>Eliminar</button>
+               </div>
+              </div>
+            `;
+          });
+        }
+      }
+
+      filtro.addEventListener("change", cargarPeticiones);
+
+      // Cargar peticiones al inicio
+      cargarPeticiones();
+    });
+
+    async function cambiarEstado(idPeticion, nuevoEstado, boton) {
+  const respuesta = await fetch(`/api/peticiones/${idPeticion}/estado`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ nuevoEstado })
+  });
+
+  const peticion = boton.closest(".peticiones-container");
+
+  if (respuesta.ok) {
+    if (nuevoEstado === 'aceptada') {
+      peticion.style.backgroundColor = '#2ecc71';
+      const botones = peticion.querySelectorAll('button');
+      botones.forEach(btn => btn.disabled = true);
+    } else if (nuevoEstado === 'rechazada') {
+      peticion.remove(); // ¡quitar del DOM sin recargar!
+    }
+  } else {
+    alert("Error al actualizar la petición.");
+  }
+}
+  </script>
+</body>
+</html>

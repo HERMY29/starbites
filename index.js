@@ -38,3 +38,8 @@ app.listen(PORT, () => {
 
 const publicacionesRoutes = require('./routes/publicaciones_router');
 app.use('/publicaciones', publicacionesRoutes);
+
+//RUTA PA PETICIONES
+
+const peticionRouter = require('./routes/peticion_router');
+app.use('/api', peticionRouter);
