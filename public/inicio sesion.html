@@ -55,6 +55,8 @@
       console.log(data);
       if (res.ok) {
 
+        localStorage.setItem('id_usuario', data.id_usuario);
+        
         alert('¡Bienvenid@ personita!');
         if (data.tipo_usuario === 'administrador') {
           window.location.href = 'Admin_main.html';
