@@ -49,7 +49,8 @@ exports.login = async (req, res) => {
     res.json({
       message: 'Inicio de sesión exitoso',
       token,
-      tipo_usuario: user.tipo_usuario
+      tipo_usuario: user.tipo_usuario,
+      id_usuario: user.id 
     });
 
   } catch (error) {

@@ -198,6 +198,16 @@ body {
 .logo img {
   width: 200px;
 }
+.user-and-star {
+    display: flex;
+    align-items: center;
+  }
+  
+
+.estrella img {
+  width: 60px; /* Aumentamos el tamaño de la estrella */
+  margin-right: 10px; /* Espacio entre la estrella y el ícono de usuario */
+ }
 
 .nav ul {
   display: flex;
