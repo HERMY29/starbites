@@ -68,22 +68,26 @@
           contenedor.innerHTML += `<h2>${titulo}</h2>`;
           categorias[tipo].forEach(p => {
 
-             const estaAceptada = p.estado === 'aceptada';
+            if (p.estado === 'rechazada') return;
 
-            contenedor.innerHTML += `
-              <div class="peticiones-container" data-id="${p.id_peticion}" style="${estaAceptada ? 'background-color: #2ecc71;' : ''}">
-               <img src="Imagenes/perfil-de-usuario.png" class="user-photo">
-               <div class="usuario-tag">${p.tipo.charAt(0).toUpperCase() + p.tipo.slice(1)}</div>
-               <div>
-                 <p><strong>${p.usuario}</strong></p>
-                 <p><i>Petición: ${p.mensaje}</i></p>
-               </div>
-               <div class="accion-btns">
-                <button onclick="cambiarEstado(${p.id_peticion}, 'aceptada', this)" ${estaAceptada ? 'disabled' : ''}>Aceptar</button>
-                <button onclick="cambiarEstado(${p.id_peticion}, 'rechazada', this)" ${estaAceptada ? 'disabled' : ''}>Eliminar</button>
-               </div>
+             const estaAceptada = p.estado === 'aceptada';
+const fondo = estaAceptada ? 'background-color: #2ecc71;' : '';
+          const desactivar = estaAceptada ? 'disabled' : '';
+
+          contenedor.innerHTML += `
+            <div class="peticiones-container" data-id="${p.id_peticion}" style="${fondo}">
+              <img src="Imagenes/perfil-de-usuario.png" class="user-photo">
+              <div class="usuario-tag">${p.tipo.charAt(0).toUpperCase() + p.tipo.slice(1)}</div>
+              <div>
+                <p><strong>${p.usuario}</strong></p>
+                <p><i>Petición: ${p.mensaje}</i></p>
               </div>
-            `;
+              <div class="accion-btns">
+                <button onclick="cambiarEstado(${p.id_peticion}, 'aceptada', this)" ${desactivar}>Aceptar</button>
+                <button onclick="cambiarEstado(${p.id_peticion}, 'rechazada', this)" ${desactivar}>Eliminar</button>
+              </div>
+            </div>
+          `;
           });
         }
       }
@@ -105,9 +109,8 @@
 
   if (respuesta.ok) {
     if (nuevoEstado === 'aceptada') {
-      peticion.style.backgroundColor = '#2ecc71';
-      const botones = peticion.querySelectorAll('button');
-      botones.forEach(btn => btn.disabled = true);
+       peticion.style.backgroundColor = '#2ecc71';
+        peticion.querySelectorAll('button').forEach(btn => btn.disabled = true);
     } else if (nuevoEstado === 'rechazada') {
       peticion.remove(); // ¡quitar del DOM sin recargar!
     }
