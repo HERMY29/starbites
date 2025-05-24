@@ -82,3 +82,6 @@ CREATE TABLE peticion (
   fecha_peticion DATETIME DEFAULT CURRENT_TIMESTAMP,
   FOREIGN KEY (id_usuario) REFERENCES usuario(id)
 );
+
+INSERT INTO peticion (id_usuario, tipo, titulo, mensaje, productora, fecha_estreno)
+VALUES (?, ?, ?, ?, ?, ?);

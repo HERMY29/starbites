@@ -41,3 +41,7 @@ app.use('/publicaciones', publicacionesRoutes);
 
 const comentariosRouter = require('./routes/comentarios_router');
 app.use('/comentarios', comentariosRouter);
+
+
+const peticionRouter = require('./routes/peticion_router');
+app.use('/api', peticionRouter);

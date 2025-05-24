@@ -15,7 +15,7 @@
       </div>
       <nav class="nav">
         <ul>
-          <li><a href="#">Inicio</a></li>
+          <li><a href="user_main.html">Inicio</a></li>
           <li><a href="#">Peliculas</a></li>
           <li><a href="#">Series</a></li>
           <li><a href="#">Libros</a></li>
@@ -32,33 +32,83 @@
       <h1>¿Te gustaría ver alguna reseña de alguna otra película/libro/serie? ¡Ponlo en los comentarios para poder tomarlo en cuenta!</h1>
       
       <div class="options">
-        <button>Película</button>
-        <button>Serie</button>
-        <button>Libro</button>
+        <button onclick="seleccionarTipo('pelicula')">Película</button>
+        <button onclick="seleccionarTipo('serie')">Serie</button>
+        <button onclick="seleccionarTipo('libro')">Libro</button>
       </div>
       
       <div class="form-container">
-        <form action="#" class="buzon-form">
+        <form id="buzonForm" class="buzon-form">
+          <input type="hidden" id="tipo" value="pelicula" />
           <div class="input-group">
-            <label for="nombre">Nombre de la película:</label>
-            <input type="text" id="nombre" placeholder="Escribe el nombre aquí">
+            <label for="nombre">Título:</label>
+            <input type="text" id="nombre" required placeholder="Nombre del contenido" />
           </div>
-          
+
+          <div class="input-group">
+            <label for="mensaje">¿Por qué quieres esta reseña?</label>
+            <textarea id="mensaje" required placeholder="Escribe tu mensaje..."></textarea>
+          </div>
+
           <div class="input-group-row">
             <div class="input-group">
-              <label for="productora">Casa Productora:</label>
-              <input type="text" id="productora" placeholder="Escribe la casa productora aquí">
+              <label for="productora">Casa Productora / Editorial:</label>
+              <input type="text" id="productora" />
             </div>
             <div class="input-group">
-              <label for="estreno">Año Estreno:</label>
-              <input type="date" id="estreno" placeholder="Año de estreno">
+              <label for="estreno">Fecha de Estreno / Publicación:</label>
+              <input type="date" id="estreno" />
             </div>
           </div>
-          
+
           <button type="submit" class="submit-btn">Enviar</button>
         </form>
       </div>
     </section>
   </div>
+
+   <script>
+    function seleccionarTipo(tipo) {
+      document.getElementById("tipo").value = tipo;
+      alert("Seleccionaste: " + tipo);
+    }
+
+    document.getElementById("buzonForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const id_usuario = localStorage.getItem('id_usuario'); // asegurarse que esté seteado en el login
+      if (!id_usuario) {
+        return alert("Debes iniciar sesión para enviar una petición.");
+      }
+
+      const data = {
+        id_usuario: parseInt(id_usuario),
+        tipo: document.getElementById("tipo").value,
+        titulo: document.getElementById("nombre").value,
+        mensaje: document.getElementById("mensaje").value,
+        productora: document.getElementById("productora").value,
+        fecha_estreno: document.getElementById("estreno").value
+      };
+
+      try {
+        const res = await fetch('/api/peticiones', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+
+        const result = await res.json();
+        if (res.ok) {
+          alert("¡Petición enviada!");
+          e.target.reset();
+        } else {
+          alert("Error: " + result.message);
+        }
+      } catch (error) {
+        alert("Error al conectar con el servidor.");
+      }
+    });
+  </script>
+
 </body>
 </html>
