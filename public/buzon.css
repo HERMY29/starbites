@@ -1,0 +1,182 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Arial', sans-serif;
+    background-color: #2f2f2f;
+    color: white;
+  }
+  
+  /* Barra superior */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #360745;
+    padding: 20px 40px;
+  }
+  
+  .user-icon img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin-left: 10px;
+  }
+  .logo img {
+    width: 200px;
+  }
+  
+  .nav ul {
+    display: flex;
+    list-style-type: none;
+    justify-content: center;
+    flex: 1;
+    margin: 0;
+  }
+  
+  .nav li {
+    margin: 0 20px;
+  }
+  
+  .nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 30px;
+    font-weight: bold;
+  }
+  
+  .nav a:hover {
+    text-decoration: underline;
+  }
+  
+  .search-box {
+    padding: 12px 25px;
+    border-radius: 25px;
+    border: none;
+    background-color: #9a72b3;
+    color: white;
+    font-size: 16px;
+    width: 550px;
+    margin-left: 20px;
+    display: block;
+  }
+  
+  .search-box::placeholder {
+    color: white;
+  }
+  
+  .peticiones-container {
+    display: flex;
+    align-items: center;
+    background-color: #333;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .peticiones-container .usuario-tag {
+    background-color: #6c4f9b;
+    color: white;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 14px;
+    margin-right: 10px;
+  }
+  
+  /* Foto de perfil del usuario */
+  .peticiones-container .user-photo {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 15px;
+  }
+  
+  .peticiones-container .accion-btns {
+    display: flex;
+    gap: 10px;
+    margin-left: auto; /* Asegura que los botones se alineen a la derecha */
+    margin-top: 10px; /* Agrega un pequeño espacio entre el texto y los botones */
+  }
+  
+  /* Botones */
+  button {
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  /* Botón Aceptar */
+  button:first-child {
+    background-color: #6c4f9b;
+    color: white;
+  }
+  
+  button:first-child:hover {
+    background-color: #00bcd4;  /* Cambia a celeste al pasar el cursor */
+  }
+  
+  /* Botón Eliminar */
+  button:last-child {
+    background-color: #e74c3c;
+    color: white;
+  }
+  
+  button:last-child:hover {
+    background-color: #c0392b;  /* Cambia a rojo al pasar el cursor */
+  }
+  
+  /* Estilo para la descripción de la petición */
+  .peticiones-container div p {
+    font-size: 16px;
+    margin: 0;
+  }
+  
+  .peticiones-container div p strong {
+    font-weight: bold;
+  }
+  
+  .peticiones-container div p i {
+    font-style: italic;
+  }
+  
+  .peticion-titulo {
+    font-size: 30px;
+    text-align: center;
+    margin-bottom: 20px;
+    color: white;
+  }
+  
+  /* Filtro de peticiones */
+  .filtro {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .filtro label {
+    color: white;
+    font-size: 18px;
+    margin-right: 10px;
+  }
+  
+  .filtro select {
+    background-color: #6c4f9b;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .filtro select:hover {
+    background-color: #9a72b3;
+  }
+  
+  
